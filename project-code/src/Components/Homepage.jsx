@@ -15,6 +15,7 @@ const Homepage = () => {
         <button className="btn btn-primary btn-lg btn-cta">Let the Party Begin 🎉🚀</button>
       </section>
 
+
       {/* Section 3: Benefits Section */}
       <section className="benefits-section container">
         <div className="row text-center">
