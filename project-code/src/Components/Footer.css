@@ -1,0 +1,62 @@
+/* Footer Global Styles */
+.footer {
+    border-top: 1px solid #B0B0B0;
+    background-color: #2C2A2D;
+    color: #FFFFFF;
+    padding: 40px 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Section Titles */
+  .section-title {
+    color: #FFD700; /* Gold/Yellow for section titles */
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+  
+  /* List Styling */
+  .footer ul {
+    padding-left: 0;
+  }
+  .footer li {
+    margin-bottom: 10px;
+    color: #FFFFFF; /* Pure white text for list items */
+  }
+  .footer li a {
+    color: #E16A20; /* Base Vibrant Orange for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .footer li a:hover {
+    color: #F89C4C; /* Lighter orange tone on hover */
+  }
+  
+  /* Social Media Icons */
+  .social-icons i {
+    margin-right: 10px;
+  }
+  .social-icons a {
+    color: #FFD700; /* Gold/Yellow for social media icons */
+    transition: color 0.3s ease;
+  }
+  .social-icons a:hover {
+    color: #FF4E50; /* Vibrant red on hover */
+  }
+  
+  /* Logo Placeholder */
+  .logo-placeholder {
+    margin: 30px 0;
+  }
+  .logo-placeholder img {
+    max-width: 150px;
+    height: auto;
+  }
+  
+  /* Footer Bottom Section */
+  .footer-bottom {
+    margin-top: 30px;
+    border-top: 1px solid #B0B0B0; /* Light gray border on top */
+    padding-top: 15px;
+    color: #B0B0B0; /* Light gray for less important info */
+  }
+  
