@@ -71,3 +71,4 @@ Hover Effect: Use #F89C4C (Lighter Orange Tone) to give a soft, subtle hover eff
 Bottom Line ("2024 Random Advice Generator India")
 Text: Use #B0B0B0 (Light Gray) to keep this subtle. It’s not as important as other content, so a lighter contrast is enough for this section.
 This color distribution will keep the footer visually balanced, clear, and attractive while maintaining alignment with your youthful and modern design style.
+
