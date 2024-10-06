@@ -102,3 +102,4 @@ Nav Links: #FFFFFF (with #E16A20 hover effect)
 Log In Button: #3DDC97 (with #4AE0A7 hover effect)
 Create Account Button: #E16A20 (with #F89C4C hover effect)
 This layout ensures that key actions like "Create Account" and "Log In" stand out while keeping a cohesive and modern design across the navbar.
+
