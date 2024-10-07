@@ -72,7 +72,8 @@ function SignIn() {
                 </form>
 
                 <div className="text-center mt-3">
-                    <a href="/" className="forgot-password">Forgot Password?</a>
+                    <a href="/" className="forgot-password">Already have an account? Sign In</a>
+
                 </div>
             </div>
         </div>
