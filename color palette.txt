@@ -103,3 +103,48 @@ Log In Button: #3DDC97 (with #4AE0A7 hover effect)
 Create Account Button: #E16A20 (with #F89C4C hover effect)
 This layout ensures that key actions like "Create Account" and "Log In" stand out while keeping a cohesive and modern design across the navbar.
 
+FOR SIGN IN PAGE
+
+Sign-In Page Color Scheme:
+Background and Form Container:
+
+Page Background: Use #2C2A2D (Base Dark Color) to create a sleek, modern backdrop that appeals to younger users. It keeps the focus on the form elements.
+Form Container: Use #3A3A3D (Darker Gray) to contrast slightly against the page background. This will give the form a subtle separation from the background while still maintaining the dark theme.
+Text Colors:
+
+Primary Text (Labels, Headings): Use #FFFFFF (Pure White) to ensure readability for the form labels like "Username," "Email," "Password," and "Phone Number."
+Placeholder Text: Use #B0B0B0 (Light Gray) for the placeholder text in the input fields to maintain a clean look without overpowering the primary content.
+Input Fields:
+
+Input Field Background: Use #3A3A3D (Darker Gray) for the background of the input fields to differentiate from the page's dark background while staying cohesive.
+Input Field Text: Use #F2F2F2 (Light Gray/Off White) for the text inside the input fields, ensuring good contrast for easy readability.
+Input Field Border: Use #FFD700 (Gold/Yellow) for a subtle but appealing border around the input fields to make them stand out without being overwhelming.
+Buttons:
+
+Primary Button (Submit/Sign In):
+Background: Use #E16A20 (Base Vibrant Orange) for the submit button to make it pop.
+Text: Use #FFFFFF (Pure White) for the text inside the button.
+Hover Effect: Use #F89C4C (Lighter Orange Tone) as a hover effect to add a smooth transition when the user interacts with the button.
+Secondary Button (Cancel):
+Background: Use #3DDC97 (Mint Green) for the secondary button to give it a welcoming, positive tone.
+Text: Use #FFFFFF (Pure White) for the text on the button.
+Hover Effect: Use #4AE0A7 (Lighter Mint) for a hover effect on this button.
+Error/Validation States:
+
+Error Message Text: Use #FF4E50 (Vibrant Red) for error messages (e.g., "Invalid email" or "Password too short"). It grabs attention while staying in line with the youthful and vibrant design.
+Input Field Border (Error State): When an input has an error (e.g., an invalid email), change the input border to #FF4E50 (Vibrant Red) to highlight the issue.
+Success States:
+
+Success Message Text: Use #3DDC97 (Mint Green) for success messages like "Form submitted successfully." It adds a fresh, positive feel.
+Input Field Border (Success State): When input is valid, use #FFD700 (Gold/Yellow) for a subtle confirmation that the user’s input is correct.
+Summary:
+Background: #2C2A2D (Dark Gray)
+Form Container: #3A3A3D (Darker Gray)
+Primary Text: #FFFFFF (White)
+Placeholder Text: #B0B0B0 (Light Gray)
+Input Field Background: #3A3A3D (Darker Gray)
+Input Field Text: #F2F2F2 (Light Gray/Off White)
+Primary Button: #E16A20 (Orange) with #F89C4C (Lighter Orange) on hover
+Secondary Button: #3DDC97 (Mint Green) with #4AE0A7 (Lighter Mint) on hover
+Error State: #FF4E50 (Vibrant Red)
+Success State: #3DDC97 (Mint Green)
