@@ -6,8 +6,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    /* Padding for mobile devices */
+    padding: 10px;
+    /* Reduced padding for mobile devices */
 }
 
 /* Form container */
@@ -19,8 +19,15 @@
     /* Full width on small screens */
     max-width: 400px;
     /* Maximum width on larger screens */
-    padding: 20px;
+    padding: 15px;
+    /* Adjust padding to reduce space consumption */
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    /* Ensure the form has minimum height */
 }
 
 /* Image placeholder styling */
@@ -28,80 +35,68 @@
     display: block;
     margin: 0 auto;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
+    /* Slightly smaller image for compact layout */
 }
 
 /* Primary Text (Headings and Labels) */
 .form-label {
     color: #FFFFFF;
-    /* White for labels */
-    font-size: 1.1rem;
+    font-size: 1rem;
+    /* Slightly smaller font for better fit */
 }
 
 /* Input Fields */
 .form-control {
     background-color: #3A3A3D;
-    /* Darker Gray for input fields */
     color: #F2F2F2;
-    /* Light Gray text */
     border: 2px solid #FFD700;
-    /* Gold border */
     border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 15px;
-    /* Space between input fields */
+    padding: 8px;
+    margin-bottom: 10px;
     width: 100%;
 }
 
 .form-control::placeholder {
     color: #B0B0B0;
-    /* Light Gray for placeholder text */
 }
 
 /* Button Styling */
 .custom-btn-primary,
 .custom-btn-secondary {
     width: 100%;
-    /* Full width buttons for mobile */
-    padding: 10px 20px;
-    font-size: 1rem;
+    padding: 10px 15px;
+    font-size: 0.9rem;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .custom-btn-primary {
     background-color: #E16A20;
-    /* Base Vibrant Orange */
     color: #FFFFFF;
-    /* White text */
-    border: none;
 }
 
 .custom-btn-primary:hover {
     background-color: #F89C4C;
-    /* Lighter Orange hover effect */
 }
 
 .custom-btn-secondary {
     background-color: #3DDC97;
-    /* Mint Green */
     color: #FFFFFF;
-    /* White text */
-    border: none;
 }
 
 .custom-btn-secondary:hover {
     background-color: #4AE0A7;
-    /* Lighter Mint hover effect */
 }
 
 /* Forgot Password Link */
 .forgot-password {
     color: #FFFFFF;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    /* Slightly smaller text */
 }
 
 .forgot-password:hover {
@@ -111,35 +106,43 @@
 /* Error/Success States */
 .form-control.is-invalid {
     border-color: #FF4E50;
-    /* Vibrant Red for error */
 }
 
 .form-control.is-valid {
     border-color: #FFD700;
-    /* Gold for valid input */
 }
 
 /* Responsive Design */
 @media (min-width: 576px) {
     .form-container {
-        padding: 30px;
+        padding: 20px;
     }
 
     .custom-btn-primary,
     .custom-btn-secondary {
         width: auto;
-        /* Buttons will adjust size based on content for larger screens */
-        padding: 12px 30px;
+        padding: 10px 30px;
     }
 }
 
 @media (max-width: 576px) {
     .form-container {
-        padding: 15px;
+        padding: 10px;
     }
 
     .form-control {
-        font-size: 14px;
+        font-size: 0.9rem;
         /* Smaller font for mobile */
+    }
+
+    .custom-btn-primary,
+    .custom-btn-secondary {
+        font-size: 0.85rem;
+        /* Adjust button font size */
+        padding: 8px 12px;
+    }
+
+    .forgot-password {
+        font-size: 0.7rem;
     }
 }
