@@ -1,0 +1,93 @@
+/* General Background */
+.contact-page {
+    background-color: #2C2A2D;
+    color: #FFFFFF;
+    padding: 40px 0;
+    min-height: 100vh;
+  }
+  
+  .contact-form-wrapper {
+    background-color: #3A3A3D;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+  }
+  
+  /* Form Labels */
+  .form-label {
+    color: #FFFFFF;
+    font-weight: bold;
+  }
+  
+  /* Input Fields */
+  .contact-input {
+    background-color: #3A3A3D;
+    color: #F2F2F2;
+    border: 2px solid #FFD700;
+    border-radius: 5px;
+  }
+  
+  .contact-input::placeholder {
+    color: #B0B0B0;
+  }
+  
+  .contact-input:focus {
+    border-color: #FFD700;
+    box-shadow: none;
+  }
+  
+  /* Textarea */
+  .contact-textarea {
+    background-color: #3A3A3D;
+    color: #F2F2F2;
+    border: 2px solid #FFD700;
+    border-radius: 5px;
+  }
+  
+  .contact-textarea::placeholder {
+    color: #B0B0B0;
+  }
+  
+  .contact-textarea:focus {
+    border-color: #FFD700;
+    box-shadow: none;
+  }
+  
+  /* Button Styles */
+  .contact-btn {
+    background-color: #E16A20;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 100%;
+  }
+  
+  .contact-btn:hover {
+    background-color: #F89C4C;
+  }
+  
+  /* Error and Success Messages */
+  .error-message {
+    background-color: #FF4E50;
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+  }
+  
+  .success-message {
+    background-color: #3DDC97;
+    color: #FFFFFF;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+  }
+  
