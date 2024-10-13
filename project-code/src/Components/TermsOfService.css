@@ -1,0 +1,62 @@
+/* Full-width container */
+.tos-full-page-container {
+    /* Full viewport width */
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: #2C2A2D;
+    /* Light gray background */
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    /* Darker text color for readability */
+}
+
+/* Header styling */
+.tos-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.tos-header h1 {
+    font-size: 36px;
+    color: #e16a20;
+    /* Vibrant orange header text */
+}
+
+.tos-header p {
+    font-size: 16px;
+    color: #777;
+    /* Light gray text for effective date */
+}
+
+/* Section styling */
+.tos-section {
+    margin-bottom: 40px;
+    width: 100%;
+    /* Ensures full width for each section */
+    border-bottom: 1px solid #ddd;
+    /* Subtle border between sections */
+    padding-bottom: 20px;
+}
+
+.tos-section h2 {
+    font-size: 28px;
+    color: #e16a20;
+    /* Dark color for section headings */
+    margin-bottom: 15px;
+}
+
+.tos-section p {
+    font-size: 18px;
+    color: #fff;
+    /* Medium gray for section text */
+    line-height: 1.6;
+    /* Improve readability */
+}
+
+/* Footer styling */
+.tos-footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 16px;
+    color: #555;
+}

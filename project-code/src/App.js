@@ -8,6 +8,7 @@ import SignIn from './Components/SignInPage';
 import Error404 from './Components/Error404page';
 import Contact from './Components/Contact';
 import AboutUs from './Components/AboutUs';
+import TermsOfService from './Components/TermsOfServices';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/*' element={<Error404 />} />
           <Route path='/about' element={<AboutUs />} />
-
+          <Route path='/termsofservices' element={<TermsOfService />}></Route>
         </Routes>
         <Footer />
       </div >

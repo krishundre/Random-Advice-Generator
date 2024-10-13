@@ -47,7 +47,7 @@ const Footer = () => {
           <div className="col-md-3">
             <h5 className="section-title">Legal</h5>
             <ul className="list-unstyled">
-              <li><a href="/terms">Terms of Service</a></li>
+              <li><a href="/TermsOfServices">Terms of Service</a></li>
               <li><a href="/privacy">Privacy Policy</a></li>
             </ul>
           </div>
