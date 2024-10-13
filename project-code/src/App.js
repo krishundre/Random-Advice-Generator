@@ -9,6 +9,7 @@ import Error404 from './Components/Error404page';
 import Contact from './Components/Contact';
 import AboutUs from './Components/AboutUs';
 import TermsOfService from './Components/TermsOfServices';
+import PrivacyPolicy from './Components/PrivacyPolicy';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/*' element={<Error404 />} />
           <Route path='/about' element={<AboutUs />} />
           <Route path='/termsofservice' element={<TermsOfService />} />
+          <Route path='/privacy-policy' element={<PrivacyPolicy />} />
 
         </Routes>
         <Footer />
