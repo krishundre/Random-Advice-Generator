@@ -272,3 +272,49 @@ Error Message:
 Background: Use #FF4E50 (Vibrant Red) for error notifications.
 Text: Use #FFFFFF (Pure White) to ensure the error message is highly visible.
 This scheme will maintain consistency with your other pages and align well with the overall aesthetic of the project.
+
+
+FOR ABOUT PAGE
+For the About Us page, here's a color scheme based on the palette you provided:
+
+Primary Colors:
+Background:
+
+Use #2C2A2D (Base Dark Color) for the entire page background, maintaining the dark theme and ensuring a modern, minimalistic look.
+Text Colors:
+
+Main Text: Use #FFFFFF (Pure White) for headings, paragraphs, and any prominent text to keep it highly readable against the dark background.
+Secondary Text: Use #B0B0B0 (Light Gray) for less important text such as subheadings, descriptions, or image captions.
+Image Hover Effects:
+Image Border & Shadow:
+On hover, apply a shadow effect with the following:
+Box Shadow Color: rgba(225, 106, 32, 0.7) (from #E16A20, Base Vibrant Orange).
+Shadow Spread: Slightly increase the shadow to give a smooth, glowing effect.
+Transition: Use a smooth transition (0.3s ease) to animate the shadow when hovering.
+Buttons and Interactive Elements:
+Primary Buttons (e.g., Learn More):
+Background: Use #E16A20 (Base Vibrant Orange) for the primary call-to-action buttons like "Read More" or "Contact Us."
+Hover: Change to #F89C4C (Lighter Orange Tone) to provide an interactive feel.
+Text: Use #FFFFFF (Pure White) to ensure contrast and readability.
+Accent Elements:
+Line Dividers or Decorative Elements:
+Use #FFD700 (Gold/Yellow) for lines or small decorative elements between sections to maintain vibrancy without overwhelming the design.
+Image Containers:
+Image Frames or Borders:
+
+Use subtle border effects or container backgrounds in #3A3A3D (Darker Gray) to maintain contrast with the page background, ensuring that the images pop without clashing with the overall design.
+On Hover (Shadow Effect):
+
+Box Shadow: 0px 4px 15px rgba(225, 106, 32, 0.7) to give a glowing orange shadow effect when the user hovers over images.
+Transition: Add transition: all 0.3s ease; to smoothly animate the shadow effect.
+Text Under Images:
+Caption Text or Titles Under Images:
+Use #B0B0B0 (Light Gray) for image titles, captions, or any other accompanying text. This will keep the focus on the images while still ensuring that the text is readable.
+Success and Error Messages (If Applicable):
+Success Message:
+
+Use #3DDC97 (Mint Green) for any success messages, paired with white text (#FFFFFF).
+Error Message:
+
+Use #FF4E50 (Vibrant Red) for error messages, also paired with white text (#FFFFFF).
+This color scheme ensures that the About Us page stays visually cohesive with the rest of your project while adding vibrant accents and interactive elements for a modern, dynamic feel. The hover effect on images adds an engaging touch, making the page lively and professional.

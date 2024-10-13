@@ -7,6 +7,7 @@ import Login from './Components/Loginpage';
 import SignIn from './Components/SignInPage';
 import Error404 from './Components/Error404page';
 import Contact from './Components/Contact';
+import AboutUs from './Components/AboutUs';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/' element={<Homepage />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='/*' element={<Error404 />} />
+          <Route path='/about' element={<AboutUs />} />
 
         </Routes>
         <Footer />
