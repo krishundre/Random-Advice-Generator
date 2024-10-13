@@ -1,0 +1,49 @@
+.privacy-policy-page {
+    background-color: #2C2A2D; /* Base Dark Color */
+    color: #FFFFFF; /* Main Text Color */
+    padding: 40px 20px;
+  }
+  
+  .privacy-policy-wrapper {
+    background-color: #3A3A3D; /* Darker Gray for Container */
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .privacy-policy-heading {
+    font-size: 36px;
+    font-weight: bold;
+    color: #FFD700; /* Gold Color */
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .policy-intro, .policy-text {
+    font-size: 16px;
+    color: #F2F2F2; /* Light Gray for Paragraph Text */
+    margin-bottom: 20px;
+  }
+  
+  .policy-subheading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #E16A20; /* Base Vibrant Orange for Subheadings */
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .policy-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    color: #F2F2F2; /* Light Gray for List Items */
+  }
+  
+  .policy-contact {
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFD700; /* Gold for Contact Info */
+  }
+  
