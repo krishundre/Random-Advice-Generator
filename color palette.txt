@@ -318,3 +318,4 @@ Error Message:
 
 Use #FF4E50 (Vibrant Red) for error messages, also paired with white text (#FFFFFF).
 This color scheme ensures that the About Us page stays visually cohesive with the rest of your project while adding vibrant accents and interactive elements for a modern, dynamic feel. The hover effect on images adds an engaging touch, making the page lively and professional.
+
