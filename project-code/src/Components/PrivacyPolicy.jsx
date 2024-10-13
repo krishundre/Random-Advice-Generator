@@ -70,7 +70,7 @@ function PrivacyPolicy() {
         <p className="policy-text">
           If you have any questions about this privacy policy, you can contact us at:
         </p>
-        <p className="policy-contact">Email: info@randomadvicegenerator.in</p>
+        <p className="policy-contact">Email: vaibhskulk@gmail.com</p>
         <p className="policy-contact">Phone: +91 7517976109</p>
       </div>
     </div>

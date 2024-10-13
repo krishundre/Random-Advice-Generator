@@ -17,9 +17,9 @@ const Footer = () => {
           <div className="col-md-3">
             <h5 className="section-title">Contact Info</h5>
             <ul className="list-unstyled">
-              <li>Email: info@randomadvice.com</li>
-              <li>Phone: +91 123 456 7890</li>
-              <li>Developer: Krish</li>
+              <li>Email: krisundre@gmail.com / vaibhskulk@gmail.com</li>
+              <li>Phone: +91 85914 81281 / +91 75179 76019</li>
+              <li>Developer: Krish Undre & Vaibhavi Kulkarni</li>
             </ul>
           </div>
 
