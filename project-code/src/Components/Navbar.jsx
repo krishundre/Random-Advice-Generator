@@ -1,7 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
+import { auth } from '../config/firebase';
+import { signOut, onAuthStateChanged } from 'firebase/auth';
 
 const Navbar = () => {
+  const [user, setUser] = useState(null);
+
+  // Check if a user is logged in
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
+
+  // Handle log out
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      alert('Logged out successfully!');
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
       <div className="container">
@@ -40,11 +64,20 @@ const Navbar = () => {
 
         {/* Right Buttons */}
         <div className="d-flex">
-          <a href='/login' className="btn btn-login me-2" type="button">Log In</a>
-          <a href='/signup' className="btn btn-create-account" type="button">Create Account</a>
+          {user ? (
+            <button onClick={handleLogout} className="btn btn-logout" type="button">
+              Log Out
+            </button>
+          ) : (
+            <>
+              <a href='/login' className="btn btn-login me-2" type="button">Log In</a>
+              <a href='/signup' className="btn btn-create-account" type="button">Create Account</a>
+            </>
+          )}
         </div>
       </div>
     </nav>
   );
 };
+
 export default Navbar;
