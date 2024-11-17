@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Login.css';  // Custom CSS file
+import './Login.css';
 import { FcGoogle } from 'react-icons/fc';  // Google icon
 import { auth, googleProvider } from '../config/firebase';
 import { signInWithPopup } from 'firebase/auth';
