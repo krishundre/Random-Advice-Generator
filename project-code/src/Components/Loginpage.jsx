@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Login.css';  // Custom CSS file
 import { FcGoogle } from 'react-icons/fc';  // Google icon
+import { auth, googleProvider } from '../config/firebase';
+import { signInWithPopup } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';  // Ensure navigate hook is imported
 
 function Login() {
+    const [error, setError] = useState(''); // Initialize state for error handling
+    const navigate = useNavigate(); // Initialize navigate hook
+
+    const handleGoogleSignIn = async () => {
+        setError(''); // Reset error state
+
+        try {
+            // Firebase Google sign-in
+            await signInWithPopup(auth, googleProvider);
+            alert('Sign-up successful!');
+            navigate('/'); // Redirect to the home page after successful login
+        } catch (error) {
+            console.error('Error signing in with Google:', error.message);
+            setError(error.message); // Update error state
+        }
+    };
+
     return (
         <div className="login-container d-flex justify-content-center align-items-center">
             <div className="form-container p-4">
@@ -12,6 +32,8 @@ function Login() {
                 </div>
 
                 <h2 className="text-center text-white mb-4">Login</h2>
+
+                {error && <div className="alert alert-danger" role="alert">{error}</div>} {/* Display error if exists */}
 
                 <form>
                     <div className="form-group mb-3">
@@ -41,14 +63,14 @@ function Login() {
                     </div>
 
                     <div className="d-flex justify-content-center mt-3">
-                        <button type="button" className="btn custom-btn-google d-flex align-items-center">
+                        <button type="button" className="btn custom-btn-google d-flex align-items-center" onClick={handleGoogleSignIn}>
                             Log in with Google <FcGoogle className="ms-2" />
                         </button>
                     </div>
                 </form>
 
                 <div className="text-center mt-3">
-                    <a href="#" className="forgot-password">Forgot Password?</a> |
+                    <a href="/" className="forgot-password">Forgot Password?</a> |
                     <a href="/signup" className="create-account">Create an Account</a>
                 </div>
             </div>
