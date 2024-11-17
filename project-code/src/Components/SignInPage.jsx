@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import './SignIn.css'; // Assuming you're putting custom CSS in this file
 import { auth, googleProvider } from '../config/firebase';
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { FcGoogle } from 'react-icons/fc'; // Google Icon
+import { useNavigate } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';  // Google icon
 
 function SignIn() {
+    // State management for form inputs
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -12,32 +14,41 @@ function SignIn() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
+    // Hook to navigate programmatically
+    const navigate = useNavigate();
+
+    // Handle form submission
     const handleSignUp = async (e) => {
         e.preventDefault();
         setError('');
+
+        // Check if passwords match
         if (password !== confirmPassword) {
             setError('Passwords do not match');
             return;
         }
 
         try {
+            // Firebase sign-up with email and password
             await createUserWithEmailAndPassword(auth, email, password);
             alert('Sign-up successful!');
+            navigate('/'); // Redirect to the home page
         } catch (error) {
             console.error('Error signing up:', error.message);
             setError(error.message);
         }
     };
 
-    const handleGoogleSignIn = async (e) => {
-        e.preventDefault();
+    const handleGoogleSignIn = async () => {
         setError('');
 
         try {
+            // Firebase Google sign-in
             await signInWithPopup(auth, googleProvider);
             alert('Sign-up successful!');
+            navigate('/'); // Redirect to the home page
         } catch (error) {
-            console.error('Error signing up:', error.message);
+            console.error('Error signing in with Google:', error.message);
             setError(error.message);
         }
     };
@@ -45,10 +56,6 @@ function SignIn() {
     return (
         <div className="sign-in-container d-flex justify-content-center align-items-center">
             <div className="form-container p-4">
-                <div className="image-placeholder mb-3">
-                    <img src="https://via.placeholder.com/100" alt="Sign In" className="img-fluid" />
-                </div>
-
                 <h2 className="text-center text-white mb-4">Sign In</h2>
 
                 {error && <div className="alert alert-danger text-center">{error}</div>}
@@ -119,17 +126,18 @@ function SignIn() {
                             Sign Up
                         </button>
                     </div>
-                </form>
 
-                <div className="text-center mt-3">
-                    <button
-                        onClick={handleGoogleSignIn}
-                        className="btn custom-btn-google d-flex align-items-center justify-content-center"
-                    >
-                        Sign in with Google  
-                        <FcGoogle className="mx-2" size={20} />
-                    </button>
-                </div>
+                    <div className="d-flex justify-content-center mt-3">
+                        <button
+                            type="button"
+                            className="btn btn-light custom-btn-google d-flex align-items-center"
+                            onClick={handleGoogleSignIn}
+                        >
+                            Sign in with Google
+                            <FcGoogle className="mx-2" />
+                        </button>
+                    </div>
+                </form>
 
                 <div className="text-center mt-3">
                     <a href="/login" className="forgot-password">Already have an account? Log in</a>
