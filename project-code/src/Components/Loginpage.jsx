@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import './Login.css';  // Custom CSS file
-import { FcGoogle } from 'react-icons/fc';  // Google icon
-import { auth, googleProvider } from '../config/firebase';
-import { signInWithPopup, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';  // Ensure navigate hook is imported
+import React, { useState, useEffect } from 'react';
+import './Login.css'; // Custom CSS file
+import { FcGoogle } from 'react-icons/fc'; // Google icon
+import { auth, googleProvider, db } from '../config/firebase'; // Ensure db is imported for Firestore
+import { signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
+import { useNavigate } from 'react-router-dom'; // Ensure navigate hook is imported
+import { useAuth } from '../context/AuthContext';
 
 function Login() {
     const [error, setError] = useState(''); // Initialize state for error handling
@@ -11,17 +13,24 @@ function Login() {
     const [password, setPassword] = useState(''); // Initialize state for password input
     const navigate = useNavigate(); // Initialize navigate hook
 
-    const handleGoogleSignIn = async () => {
-        setError(''); // Reset error state
+    const { currentUser } = useAuth();
 
+    useEffect(() => {
+        if (currentUser) {
+            navigate('/'); // Redirect to home if logged in
+        }
+    }, [currentUser, navigate]);
+
+    // Check if user exists in Firestore
+    const checkUserExistsInFirestore = async (emailOrUid) => {
         try {
-            // Firebase Google sign-in
-            await signInWithPopup(auth, googleProvider);
-            alert('Sign-up successful!');
-            navigate('/'); // Redirect to the home page after successful login
+            // Check Firestore for a document where email or UID matches
+            const userDoc = await getDoc(doc(db, 'users', emailOrUid)); // Firestore document by UID or email
+            return userDoc.exists();
         } catch (error) {
-            console.error('Error signing in with Google:', error.message);
-            setError(error.message); // Update error state
+            console.error('Error checking Firestore:', error.message);
+            setError('Error verifying your account. Please try again.');
+            return false;
         }
     };
 
@@ -30,27 +39,51 @@ function Login() {
         setError(''); // Reset error state
 
         try {
-            await signInWithEmailAndPassword(auth, email, password);
-            alert('Login successful!');
-            navigate('/'); // Redirect to the home page after successful login
+            // Validate Firestore before attempting Firebase Authentication
+            const userExists = await checkUserExistsInFirestore(email);
+
+            if (userExists) {
+                // Proceed with Firebase Authentication if user exists in Firestore
+                await signInWithEmailAndPassword(auth, email, password);
+                alert('Login successful!');
+                navigate('/'); // Redirect to the home page after successful login
+            } else {
+                setError('No account found with this email. Please sign up.');
+            }
         } catch (error) {
+            if (error.code === 'auth/user-not-found') {
+                setError('No account found with this email. Please sign up.');
+            } else if (error.code === 'auth/wrong-password') {
+                setError('Incorrect password. Please try again.');
+            } else {
+                setError(error.message); // Generic error handling
+            }
             console.error('Error logging in:', error.message);
-            setError(error.message); // Update error state
         }
     };
 
-    const handlePasswordReset = async () => {
+    const handleGoogleSignIn = async () => {
         setError(''); // Reset error state
-        if (!email) {
-            setError('Please enter your email to reset your password.');
-            return;
-        }
 
         try {
-            await sendPasswordResetEmail(auth, email);
-            alert('Password reset email sent!');
+            // Prompt user to select a Google account
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+
+            // Check if the user exists in Firestore
+            const userExists = await checkUserExistsInFirestore(user.uid);
+
+            if (userExists) {
+                alert('Login successful!');
+                navigate('/'); // Redirect to the home page after successful login
+            } else {
+                // If user doesn't exist, prevent login and show error
+                await auth.signOut();
+                setError('No account associated with this Google account. Please sign up.');
+                alert('No account associated with this Google account. Please sign up.');
+            }
         } catch (error) {
-            console.error('Error sending password reset email:', error.message);
+            console.error('Error signing in with Google:', error.message);
             setError(error.message); // Update error state
         }
     };
@@ -106,7 +139,6 @@ function Login() {
                 </form>
 
                 <div className="text-center mt-3">
-                    <button type="button" className="btn btn-link forgot-password" onClick={handlePasswordReset}>Forgot Password?</button> |
                     <a href="/signup" className="create-account">Create an Account</a>
                 </div>
             </div>

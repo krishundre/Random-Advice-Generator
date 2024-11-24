@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './SignIn.css'; // Assuming you're putting custom CSS in this file
 import { auth, googleProvider } from '../config/firebase';
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';  // Google icon
+import { useAuth } from '../context/AuthContext';
 
 function SignIn() {
     // State management for form inputs
@@ -14,8 +15,16 @@ function SignIn() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    // Hook to navigate programmatically
+    const { currentUser } = useAuth();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (currentUser) {
+            navigate('/'); // Redirect to home if logged in
+        }
+    }, [currentUser, navigate]);
+
+    // Hook to navigate programmatically
 
     // Handle form submission
     const handleSignUp = async (e) => {
@@ -29,13 +38,16 @@ function SignIn() {
         }
 
         try {
-            // Firebase sign-up with email and password
             await createUserWithEmailAndPassword(auth, email, password);
             alert('Sign-up successful!');
-            navigate('/'); // Redirect to the home page
+            navigate('/'); // Redirect to the home page after successful sign-up
         } catch (error) {
+            if (error.code === 'auth/email-already-in-use') {
+                setError('An account with this email already exists. Please log in.');
+            } else {
+                setError(error.message); // Generic error handling
+            }
             console.error('Error signing up:', error.message);
-            setError(error.message);
         }
     };
 

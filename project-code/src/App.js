@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import Homepage from './Components/Homepage';
 import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
@@ -14,24 +15,26 @@ import AdvicePage from './Components/AdvicePage';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path='/signup' element={<SignIn />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/' element={<Homepage />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/*' element={<Error404 />} />
-          <Route path='/about' element={<AboutUs />} />
-          <Route path='/termsofservice' element={<TermsOfService />} />
-          <Route path='/privacy-policy' element={<PrivacyPolicy />} />
-          <Route path='/advice-page' element={<AdvicePage />} />
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Routes>
+            <Route path='/signup' element={<SignIn />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/' element={<Homepage />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/*' element={<Error404 />} />
+            <Route path='/about' element={<AboutUs />} />
+            <Route path='/termsofservice' element={<TermsOfService />} />
+            <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+            <Route path='/advice-page' element={<AdvicePage />} />
 
-        </Routes>
-        <Footer />
-      </div >
-    </Router>
+          </Routes>
+          <Footer />
+        </div >
+      </Router>
+    </AuthProvider>
   );
 }
 
