@@ -49,6 +49,9 @@ function Login() {
                 navigate('/'); // Redirect to the home page after successful login
             } else {
                 setError('No account found with this email. Please sign up.');
+                alert('No account found with this email. Please sign up.');
+                navigate('/signup'); // Redirect to the home page after successful login
+
             }
         } catch (error) {
             if (error.code === 'auth/user-not-found') {
@@ -81,6 +84,7 @@ function Login() {
                 await auth.signOut();
                 setError('No account associated with this Google account. Please sign up.');
                 alert('No account associated with this Google account. Please sign up.');
+
             }
         } catch (error) {
             console.error('Error signing in with Google:', error.message);
