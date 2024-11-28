@@ -15,7 +15,7 @@ const Advices = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        navigate('/login'); // Redirect to login if not authenticated
+        navigate('/login'); // Redirect to login if not authenticated or logged in
       }
     });
     return () => unsubscribe();
@@ -36,6 +36,7 @@ const Advices = () => {
 
   useEffect(() => {
     fetchAdvice();
+
 
     let interval;
     if (autoFetch) {
