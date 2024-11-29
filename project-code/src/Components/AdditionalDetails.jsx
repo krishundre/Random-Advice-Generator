@@ -80,7 +80,9 @@ const AdditionalDetails = () => {
                 await setDoc(doc(db, 'users', user.uid), {
                     username: username,
                     phone: phone,
-                    emailVerified: emailVerified
+                    emailVerified: emailVerified,
+                    email: user.email, // Store the user's email
+                    uid: user.uid // Store the user's UID for reference
                 });
 
                 // Save the username to the 'usernames' collection to avoid duplication
