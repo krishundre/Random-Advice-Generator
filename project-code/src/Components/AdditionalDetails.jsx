@@ -4,6 +4,7 @@ import { db, auth } from '../config/firebase'; // Firestore and auth import
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore'; // Firestore methods
 import { useNavigate } from 'react-router-dom';
 
+
 const AdditionalDetails = () => {
     const [username, setUsername] = useState('');
     const [phone, setPhone] = useState('');
@@ -53,7 +54,7 @@ const AdditionalDetails = () => {
     const handleUsernameChange = (e) => {
         const value = e.target.value;
         setUsername(value);
-        checkUsernameAvailability(value);
+        checkUsernameAvailability(value.toLowerCase());
     };
 
     const handlePhoneChange = (e) => {
@@ -87,7 +88,7 @@ const AdditionalDetails = () => {
                 });
 
                 // Save the username to the 'usernames' collection to avoid duplication
-                await setDoc(doc(db, 'usernames', username), { userId: user.uid });
+                await setDoc(doc(db, 'usernames', username.toLowerCase()), { userId: user.uid });
 
                 alert('Details submitted successfully!');
                 navigate('/'); // Redirect to home page after successful submission
