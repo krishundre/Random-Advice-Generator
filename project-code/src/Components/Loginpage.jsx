@@ -83,7 +83,7 @@ function Login() {
 
                 <form onSubmit={handleLogin}>
                     <div className="form-group mb-3">
-                        <label htmlFor="identifier" className="form-label">Email or Username</label>
+                        <label htmlFor="identifier" className="form-label">Email</label>
                         <input
                             type="text"
                             className="form-control"
