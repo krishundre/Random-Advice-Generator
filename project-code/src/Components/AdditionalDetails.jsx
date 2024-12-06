@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './AdditionalDetails.css';
 import { db, auth } from '../config/firebase'; // Firestore and auth import
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore'; // Firestore methods
+import { sendEmailVerification } from 'firebase/auth'; // Email verification method
 import { useNavigate } from 'react-router-dom';
 
 const AdditionalDetails = () => {
@@ -11,6 +12,7 @@ const AdditionalDetails = () => {
     const [usernameError, setUsernameError] = useState('');
     const [phoneError, setPhoneError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [verifyLoading, setVerifyLoading] = useState(false); // Loading state for email verification
     const navigate = useNavigate();
 
     // Fetch the current user's email verification status
@@ -24,6 +26,40 @@ const AdditionalDetails = () => {
 
         checkUserVerification();
     }, []);
+
+    const checkEmailVerification = async () => {
+        setVerifyLoading(true); // Show loading spinner
+        try {
+            const user = auth.currentUser;
+            if (user) {
+                await user.reload(); // Reload user data from Firebase
+                setEmailVerified(user.emailVerified);
+                if (user.emailVerified) {
+                    alert('Email is verified!');
+                } else {
+                    alert('Email is not verified. Please check your inbox for the verification email.');
+                }
+            }
+        } catch (error) {
+            console.error('Error checking email verification:', error);
+            alert('Failed to check email verification status. Please try again.');
+        } finally {
+            setVerifyLoading(false); // Hide loading spinner
+        }
+    };
+
+    const sendVerificationEmail = async () => {
+        try {
+            const user = auth.currentUser;
+            if (user) {
+                await sendEmailVerification(user);
+                alert('Verification email sent. Please check your inbox.');
+            }
+        } catch (error) {
+            console.error('Error sending verification email:', error);
+            alert('Failed to send verification email. Please try again.');
+        }
+    };
 
     // Check if the username is available in Firestore
     const checkUsernameAvailability = async (value) => {
@@ -82,7 +118,7 @@ const AdditionalDetails = () => {
                     phone: phone,
                     emailVerified: emailVerified,
                     email: user.email, // Store the user's email
-                    uid: user.uid,// Store the user's UID for reference
+                    uid: user.uid, // Store the user's UID for reference
                     createdAt: serverTimestamp() // Store the time at which account was created
                 });
 
@@ -130,12 +166,18 @@ const AdditionalDetails = () => {
                     </div>
 
                     <div className="form-group">
-                        <label>Email Verification</label>
                         {emailVerified ? (
-                            <span className="badge bg-success">Verified</span>
+                            <span className="badge bg-success">Email Verified!!</span>
                         ) : (
-                            <span className="badge bg-danger">Not Verified</span>
+                            <span className="badge bg-danger">Email Not Verified Yet!</span>
                         )}
+                        <button
+                            type="button"
+                            className="btn btn-link text-decoration-none ms-2"
+                            onClick={checkEmailVerification}
+                        >
+                            {verifyLoading ? 'Checking...' : 'Check Email Status'}
+                        </button>
                     </div>
 
                     <button type="submit" className="btn custom-btn-primary" disabled={usernameError || phoneError || loading}>
