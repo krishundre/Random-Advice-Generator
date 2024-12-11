@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useLoading } from '../context/LoadingContext';
+import { FaShareAlt } from "react-icons/fa";
 
 const Advices = () => {
   const [advice, setAdvice] = useState('');
@@ -77,7 +78,7 @@ const Advices = () => {
           </label>
         </div>
       </div>
-      <button className="btn btn-share">Share</button>
+      <button className="btn btn-share"><FaShareAlt /></button>
     </div>
   );
 };
