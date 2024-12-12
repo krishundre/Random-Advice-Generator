@@ -13,6 +13,7 @@ import TermsOfService from './Components/TermsOfServices';
 import PrivacyPolicy from './Components/PrivacyPolicy';
 import Advices from './Components/Advices';
 import AdditionalDetails from './Components/AdditionalDetails';
+import ProfilePage from './Components/ProfilePage';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
             <Route path='/privacy-policy' element={<PrivacyPolicy />} />
             <Route path='/advices' element={<Advices />} />
             <Route path='/additional-details' element={<AdditionalDetails />} />
+            <Route path='/profile' element={<ProfilePage />} />
 
           </Routes>
           <Footer />

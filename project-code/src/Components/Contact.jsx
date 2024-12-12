@@ -23,8 +23,8 @@ function Contact() {
   };
 
   return (
-    <div className="contact-page container-fluid">
-      <div className="contact-form-wrapper">
+    <div className="contact-page container-fluid d-flex align-items-center justify-content-center">
+      <div className="contact-form-wrapper w-75 ">
         <h1 className="contact-heading">Contact Us</h1>
         {/* Use the ref to target the form */}
         <form className="contact-form" ref={form} onSubmit={sendEmail}>

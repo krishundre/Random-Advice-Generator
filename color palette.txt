@@ -346,3 +346,27 @@ Error and Alert Notifications: #FF4E50 (Vibrant Red)
 A bold choice for warnings or error messages, designed to quickly draw the user's attention to critical alerts.
 Success or Positive Feedback: #3DDC97 (Mint Green)
 Use this mint green for success notifications, confirmations, or positive messages to convey a welcoming and fresh tone.
+
+
+For Profile Page
+
+Primary Colors
+Background:
+
+#2C2A2D (Base Dark Color): Main background to maintain the sleek, minimal look.
+Text:
+
+#FFFFFF (Pure White): For headings and essential user details like name and username.
+#B0B0B0 (Light Gray): For less critical text, such as labels or placeholders.
+Accent Colors
+Profile Photo Border & Highlight Elements:
+
+#E16A20 (Base Vibrant Orange): Use for the border of the profile photo and section dividers.
+Interactive Buttons (Edit, Save, etc.):
+
+#3DDC97 (Mint Green): For action buttons like "Edit Profile."
+#FFD700 (Gold/Yellow): For hover effects or secondary buttons.
+Reacted Advice Section:
+
+#F89C4C (Lighter Orange Tone): To highlight user interactions and advice reactions.
+#3A3A3D (Darker Gray): For cards or containers displaying advice.

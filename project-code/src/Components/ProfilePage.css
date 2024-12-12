@@ -1,0 +1,91 @@
+/* Profile Page */
+.profile-page {
+    background-color: #2C2A2D; /* Base Dark Color */
+    color: #FFFFFF; /* Pure White */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Profile Container */
+  .profile-container {
+    background-color: #3A3A3D; /* Darker Gray */
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+  
+  /* Profile Photo */
+  .profile-photo img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: 5px solid #E16A20; /* Vibrant Orange */
+    margin-bottom: 20px;
+  }
+  
+  /* User Details */
+  .user-name {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .user-info {
+    font-size: 1rem;
+    color: #B0B0B0; /* Light Gray */
+    margin: 5px 0;
+  }
+  
+  /* Reacted Advice Section */
+  .reacted-advice {
+    margin-top: 30px;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    color: #FFD700; /* Gold */
+    margin-bottom: 15px;
+  }
+  
+  .advice-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .advice-item {
+    background-color: #3A3A3D; /* Darker Gray */
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    color: #FFFFFF; /* Pure White */
+    border-left: 5px solid #E16A20; /* Vibrant Orange */
+    font-size: 1rem;
+    text-align: left;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 576px) {
+    .profile-container {
+      padding: 15px;
+    }
+  
+    .profile-photo img {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .user-name {
+      font-size: 1.5rem;
+    }
+  
+    .section-title {
+      font-size: 1.2rem;
+    }
+  }
+  
