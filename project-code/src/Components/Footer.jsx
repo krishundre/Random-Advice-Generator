@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.css';
+import logo from '../Assets/Logo.png'
 
 const Footer = () => {
   return (
@@ -7,7 +8,7 @@ const Footer = () => {
       {/* Logo Placeholder */}
       <div className="text-center logo-placeholder">
         <a href="/" rel="noopener noreferrer">
-          <img src="https://placehold.co/150x50?text=Logo+Here" alt="Placeholder Logo" />
+          <img src={logo} alt="Placeholder Logo" />
         </a>
       </div>
 
