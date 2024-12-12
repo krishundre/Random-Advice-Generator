@@ -5,6 +5,7 @@ import { signOut, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa'; // Importing a user icon
 import toast, { Toaster } from 'react-hot-toast';
+import logo from '../Assets/Logo.png'
 
 
 const Navbar = () => {
@@ -60,7 +61,7 @@ const Navbar = () => {
         <div className="container">
           {/* Logo */}
           <a className="navbar-brand" href="/">
-            <img src="https://placehold.co/150x50?text=Logo+Here" alt="Logo" />
+            <img src={logo} alt="Logo" />
           </a>
 
           {/* Navbar Toggler for mobile view */}
