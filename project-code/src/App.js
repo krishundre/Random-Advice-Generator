@@ -1,6 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import { LoadingProvider } from './context/LoadingContext'; // Ensure LoadingProvider is imported
+import Loader from './Components/Loader'; // Ensure Loader component is imported
+
+// Import components
 import Homepage from './Components/Homepage';
 import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
@@ -18,26 +22,29 @@ import ProfilePage from './Components/ProfilePage';
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Routes>
-            <Route path='/signup' element={<SignIn />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/' element={<Homepage />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/*' element={<Error404 />} />
-            <Route path='/about' element={<AboutUs />} />
-            <Route path='/termsofservice' element={<TermsOfService />} />
-            <Route path='/privacy-policy' element={<PrivacyPolicy />} />
-            <Route path='/advices' element={<Advices />} />
-            <Route path='/additional-details' element={<AdditionalDetails />} />
-            <Route path='/profile' element={<ProfilePage />} />
 
-          </Routes>
-          <Footer />
-        </div >
-      </Router>
+      <LoadingProvider> {/* Wrap everything with LoadingProvider */}
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Loader /> {/* Loader will be globally available */}
+            <Routes>
+              <Route path='/signup' element={<SignIn />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/' element={<Homepage />} />
+              <Route path='/contact' element={<Contact />} />
+              <Route path='/*' element={<Error404 />} />
+              <Route path='/about' element={<AboutUs />} />
+              <Route path='/termsofservice' element={<TermsOfService />} />
+              <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+              <Route path='/advices' element={<Advices />} />
+              <Route path='/additional-details' element={<AdditionalDetails />} />
+            </Routes>
+            <Footer />
+          </div>
+        </Router>
+      </LoadingProvider>
+
     </AuthProvider>
   );
 }

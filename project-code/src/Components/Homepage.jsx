@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './Homepage.css'
+import { useLoading } from '../context/LoadingContext';
+
+
 
 const Homepage = () => {
+  const { setLoading } = useLoading();
+
+  useEffect(() => {
+    setLoading(true); // Show the loader
+    const timer = setTimeout(() => setLoading(false), 2000); // Simulate loading
+    return () => clearTimeout(timer); // Cleanup on unmount
+  }, [setLoading]);
+
   return (
     <div className="homepage">
       {/* Section 1: Catchy Line */}
@@ -16,7 +27,7 @@ const Homepage = () => {
       </section>
 
 
-      {/* Section 3: Benefits Section */} 
+      {/* Section 3: Benefits Section */}
       <section className="benefits-section container">
         <div className="row text-center">
           <div className="col-md-4">
