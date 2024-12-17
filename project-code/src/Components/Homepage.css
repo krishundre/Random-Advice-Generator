@@ -51,6 +51,11 @@
   margin-bottom: 30px;
 }
 
+.benefit-image {
+  border-radius: 8px;
+  margin: 10px;
+}
+
 .benefit-title {
   color: #FFD700;
   font-size: 1.5rem;
@@ -85,21 +90,20 @@
 
 /* Testimonials Carousel Section */
 .testimonials-carousel {
-  /* Darker Gray */
   color: #FFFFFF;
   /* Pure White */
   padding: 20px;
-  margin: 20px 6em;
+  margin: 20px auto;
   text-align: center;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
-  /* gap: 50px */
+  max-width: 90%;
+  /* Makes it responsive */
 }
 
 .carousel-container {
   width: 100%;
-  max-width: 600px;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
@@ -114,11 +118,28 @@
   flex: 0 0 100%;
   padding: 20px;
   font-size: 1.2rem;
-  background-color: #00000088;
-  /* Gold */
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Semi-transparent black */
   border-radius: 10px;
-  color: #fff;
-  /* Base Dark */
+  color: #FFFFFF;
+  /* Pure White */
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   text-align: center;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .testimonial {
+    font-size: 1rem;
+    /* Adjust font size for smaller screens */
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .testimonial {
+    font-size: 0.9rem;
+    /* Further adjust font size for mobile */
+    padding: 10px;
+  }
 }
