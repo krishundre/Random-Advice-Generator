@@ -44,6 +44,7 @@ function Login() {
         }
     };
 
+
     return (
         <div className="login-container d-flex justify-content-center align-items-center">
             <div className="form-container p-4">
@@ -86,6 +87,7 @@ function Login() {
                 </form>
 
                 <div className="text-center mt-3">
+                    <a href="/reset-password" className="create-account">Forgot Password?</a> |
                     <a href="/signup" className="create-account">Create an Account</a>
                 </div>
             </div>
