@@ -48,8 +48,8 @@ const Advices = () => {
       const randomAdvice = adviceList[Math.floor(Math.random() * adviceList.length)];
       setAdvice(randomAdvice.advice);
       setAdviceId(randomAdvice.id); // Store the advice ID for reaction updates
-      console.log(randomAdvice.id);
       setReactions(randomAdvice.reactions || {}); // Load reactions
+      console.log(randomAdvice.id);
     } catch (error) {
       console.error('Error fetching advice:', error);
     } finally {
