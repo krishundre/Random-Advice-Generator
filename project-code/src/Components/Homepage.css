@@ -12,13 +12,14 @@
 }
 
 .catchy-text {
-  font-size: 3rem;
+  font-size: 4rem;
   color: #FFFFFF;
 }
 
 .subtext {
   color: #B0B0B0;
   margin-top: 10px;
+  font-size: 2rem;
 }
 
 /* Section 2: Button */

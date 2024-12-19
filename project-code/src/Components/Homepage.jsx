@@ -5,6 +5,7 @@ import TestimonialsCarousel from "./Testimonials";
 import anonymity from "../Assets/anonymity.jpg"
 import community from "../Assets/community.jpg"
 import reaction1 from "../Assets/reaction1.png"
+import { TypeAnimation } from 'react-type-animation';
 import { Tilt } from 'react-tilt'
 
 const defaultOptions = {
@@ -33,8 +34,23 @@ const Homepage = () => {
     <div className="homepage">
       {/* Section 1: Catchy Line */}
       <section className="catchy-line text-center">
-        <h1 className="catchy-text">Get the Best Advice, Anytime, Anywhere! 💡✨</h1>
-        <p className="subtext">Anonymous, unbiased, and always available. 📭‍♀️💬</p>
+        <h1 className="catchy-text">
+          <TypeAnimation
+            sequence={[
+              // Same substring at the start will only be typed once, initially
+              'Get the Best Advice at Anytime⏲️',
+              2000,
+              'Get the Best Advice Anywhere🌏',
+              2000,
+              'Get the Best Advice for Anyone🧑‍🦱',
+              2000,
+            ]}
+            speed={30}
+            repeat={Infinity}
+          />
+
+        </h1>
+        <p className="subtext">Anonymous, unbiased, and always available. 📭💬</p>
       </section>
 
       {/* Section 2: Button */}
@@ -93,7 +109,7 @@ const Homepage = () => {
           <div className="instagram-frame"></div>
         </div>
       </section>
-    </div>
+    </div >
   );
 };
 
