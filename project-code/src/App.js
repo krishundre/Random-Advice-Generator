@@ -33,6 +33,7 @@ function App() {
               <Route path='/signup' element={<SignIn />} />
               <Route path='/login' element={<Login />} />
               <Route path='/' element={<Homepage />} />
+              <Route path='/profile' element={< ProfilePage />} />
               <Route path='/contact' element={<Contact />} />
               <Route path='/*' element={<Error404 />} />
               <Route path='/about' element={<AboutUs />} />
