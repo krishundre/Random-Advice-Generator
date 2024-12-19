@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
+  background: url('../Assets/HomePageBackground.png');
 }
 
 /* Advice Container */
@@ -105,6 +106,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .report-btn:hover {
   background-color: #D13A3D;
   /* Darker Red */
@@ -113,12 +115,15 @@
 /* Auto-refresh Section */
 .auto-refresh {
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .auto-refresh label {
   color: #B0B0B0;
   /* Light Gray */
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
 }
 
 .auto-refresh input {
@@ -126,9 +131,12 @@
   transform: scale(1.2);
 }
 
+.auto-refresh span {
+  margin-left: 10px;
+}
+
 /* Share Button */
 .btn-share {
-
   background-color: #FFD700;
   /* Gold */
   color: #2C2A2D;
@@ -147,4 +155,51 @@
   /* Lighter Orange */
   color: #FFFFFF;
   /* Pure White */
+}
+
+/* Custom Switch Wrapper */
+.switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  font-size: 0.3rem;
+  color: #B0B0B0;
+  /* Light Gray for label text */
+  gap: 10px;
+  /* Spacing between label and switch */
+}
+
+/* React-Switch Custom Styling */
+.react-switch {
+  vertical-align: middle;
+  background-color: #3A3A3D;
+  /* Darker Gray for off state */
+  border: 2px solid #2C2A2D;
+  /* Base Dark Color for border */
+  border-radius: 30px;
+  /* Fully rounded */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  /* Subtle shadow */
+}
+
+.react-switch-handle {
+  background-color: #FFD700;
+  /* Gold for handle */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+  /* Handle shadow */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.react-switch.react-switch-checked {
+  background-color: #E16A20;
+  /* Base Vibrant Orange for on state */
+  border-color: #F89C4C;
+  /* Lighter Orange Tone for on state border */
+}
+
+.react-switch.react-switch-checked .react-switch-handle {
+  background-color: #3DDC97;
+  /* Mint Green for handle in on state */
 }

@@ -3,13 +3,22 @@ import './Advices.css';
 import { auth } from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { MdSkipNext, MdReport } from "react-icons/md";
 import { FaShareAlt } from "react-icons/fa";
+import Switch from "react-switch";
 
 const Advices = () => {
   const [advice, setAdvice] = useState('');
+  const [adviceId, setAdviceId] = useState(null); // Store current advice ID
+  const [reactions, setReactions] = useState({
+    smile: 0,
+    thumbsUp: 0,
+    heart: 0,
+    laugh: 0,
+    wow: 0,
+  });
   const [autoFetch, setAutoFetch] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -30,13 +39,40 @@ const Advices = () => {
       setLoading(true);
       const adviceCollection = collection(db, 'advices');
       const adviceSnapshot = await getDocs(adviceCollection);
-      const adviceList = adviceSnapshot.docs.map((doc) => doc.data().advice);
+      const adviceList = adviceSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      // Select a random advice
       const randomAdvice = adviceList[Math.floor(Math.random() * adviceList.length)];
-      setAdvice(randomAdvice);
+      setAdvice(randomAdvice.advice);
+      setAdviceId(randomAdvice.id); // Store the advice ID for reaction updates
+      setReactions(randomAdvice.reactions || {}); // Load reactions
+      console.log(randomAdvice.id);
     } catch (error) {
       console.error('Error fetching advice:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Update reactions in Firestore
+  const updateReaction = async (reactionType) => {
+    if (!adviceId) return;
+
+    try {
+      const adviceDoc = doc(db, 'advices', adviceId);
+      const updatedReactions = {
+        ...reactions,
+        [reactionType]: (reactions[reactionType] || 0) + 1,
+      };
+
+      // Update the reactions in Firestore
+      await updateDoc(adviceDoc, { reactions: updatedReactions });
+      setReactions(updatedReactions); // Update the state
+    } catch (error) {
+      console.error('Error updating reaction:', error);
     }
   };
 
@@ -60,16 +96,40 @@ const Advices = () => {
         )}
 
         <div className="reaction-panel">
-
-          <button className="reaction-btn">😊</button>
-          <button className="reaction-btn">👍</button>
-          <button className="reaction-btn">❤️</button>
-          <button className="reaction-btn">😂</button>
-          <button className="reaction-btn">😮</button>
+          <button
+            className="reaction-btn"
+            onClick={() => updateReaction('smile')}
+          >
+            😊 {reactions.smile || 0}
+          </button>
+          <button
+            className="reaction-btn"
+            onClick={() => updateReaction('thumbsUp')}
+          >
+            👍 {reactions.thumbsUp || 0}
+          </button>
+          <button
+            className="reaction-btn"
+            onClick={() => updateReaction('heart')}
+          >
+            ❤️ {reactions.heart || 0}
+          </button>
+          <button
+            className="reaction-btn"
+            onClick={() => updateReaction('laugh')}
+          >
+            😂 {reactions.laugh || 0}
+          </button>
+          <button
+            className="reaction-btn"
+            onClick={() => updateReaction('wow')}
+          >
+            😮 {reactions.wow || 0}
+          </button>
         </div>
 
         <div className="button-container">
-          <button className="next-btn" onClick={fetchAdvice} >
+          <button className="next-btn" onClick={fetchAdvice}>
             <MdSkipNext />
           </button>
           <button className="btn btn-share">
@@ -77,25 +137,29 @@ const Advices = () => {
           </button>
         </div>
 
-
-
         <div className="reaction-panel">
-          <button className="btn btn-danger report-btn">Report <MdReport className='fs-4 ms-1' /> </button>
+          <button className="btn btn-danger report-btn">
+            Report <MdReport className="fs-4 ms-1" />
+          </button>
         </div>
 
         <div className="auto-refresh">
           <label>
-            <input
-              type="checkbox"
+            <Switch
+              onChange={(checked) => setAutoFetch(checked)}
               checked={autoFetch}
-              onChange={() => setAutoFetch(!autoFetch)}
+              offColor="#3A3A3D"
+              onColor="#E16A20"
+              checkedIcon={false}
+              uncheckedIcon={false}
+              className="react-switch"
+              height={20}
+              width={48}
             />
-            Auto-refresh advice
+            <span>Auto-refresh advice</span>
           </label>
         </div>
       </div>
-
-
     </div>
   );
 };
