@@ -3,15 +3,22 @@ import './Advices.css';
 import { auth } from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { MdSkipNext, MdReport } from "react-icons/md";
 import { FaShareAlt } from "react-icons/fa";
-import Switch from "react-switch"; // Import the react-switch library
-
+import Switch from "react-switch";
 
 const Advices = () => {
   const [advice, setAdvice] = useState('');
+  const [adviceId, setAdviceId] = useState(null); // Store current advice ID
+  const [reactions, setReactions] = useState({
+    smile: 0,
+    thumbsUp: 0,
+    heart: 0,
+    laugh: 0,
+    wow: 0,
+  });
   const [autoFetch, setAutoFetch] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -32,13 +39,40 @@ const Advices = () => {
       setLoading(true);
       const adviceCollection = collection(db, 'advices');
       const adviceSnapshot = await getDocs(adviceCollection);
-      const adviceList = adviceSnapshot.docs.map((doc) => doc.data().advice);
+      const adviceList = adviceSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      // Select a random advice
       const randomAdvice = adviceList[Math.floor(Math.random() * adviceList.length)];
-      setAdvice(randomAdvice);
+      setAdvice(randomAdvice.advice);
+      setAdviceId(randomAdvice.id); // Store the advice ID for reaction updates
+      console.log(randomAdvice.id);
+      setReactions(randomAdvice.reactions || {}); // Load reactions
     } catch (error) {
       console.error('Error fetching advice:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Update reactions in Firestore
+  const updateReaction = async (reactionType) => {
+    if (!adviceId) return;
+
+    try {
+      const adviceDoc = doc(db, 'advices', adviceId);
+      const updatedReactions = {
+        ...reactions,
+        [reactionType]: (reactions[reactionType] || 0) + 1,
+      };
+
+      // Update the reactions in Firestore
+      await updateDoc(adviceDoc, { reactions: updatedReactions });
+      setReactions(updatedReactions); // Update the state
+    } catch (error) {
+      console.error('Error updating reaction:', error);
     }
   };
 
@@ -62,11 +96,36 @@ const Advices = () => {
         )}
 
         <div className="reaction-panel">
-          <button className="reaction-btn">😊</button>
-          <button className="reaction-btn">👍</button>
-          <button className="reaction-btn">❤️</button>
-          <button className="reaction-btn">😂</button>
-          <button className="reaction-btn">😮</button>
+          <button
+            className="reaction-btn"
+            onClick={() => updateReaction('smile')}
+          >
+            😊 {reactions.smile || 0}
+          </button>
+          <button
+            className="reaction-btn"
+            onClick={() => updateReaction('thumbsUp')}
+          >
+            👍 {reactions.thumbsUp || 0}
+          </button>
+          <button
+            className="reaction-btn"
+            onClick={() => updateReaction('heart')}
+          >
+            ❤️ {reactions.heart || 0}
+          </button>
+          <button
+            className="reaction-btn"
+            onClick={() => updateReaction('laugh')}
+          >
+            😂 {reactions.laugh || 0}
+          </button>
+          <button
+            className="reaction-btn"
+            onClick={() => updateReaction('wow')}
+          >
+            😮 {reactions.wow || 0}
+          </button>
         </div>
 
         <div className="button-container">
