@@ -19,6 +19,7 @@ import Advices from './Components/Advices';
 import AdditionalDetails from './Components/AdditionalDetails';
 import ProfilePage from './Components/ProfilePage';
 import ResetPassword from './Components/Reset-password';
+import AddAdvice from './Components/AddAdvice';
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
               <Route path='/advices' element={<Advices />} />
               <Route path='/additional-details' element={<AdditionalDetails />} />
               <Route path='/reset-password' element={<ResetPassword />} />
+              <Route path='/add-advice' element={<AddAdvice/>} />
             </Routes>
             <Footer />
           </div>

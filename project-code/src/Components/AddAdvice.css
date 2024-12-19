@@ -1,0 +1,89 @@
+/* Page Background */
+.add-advice-page {
+    background-color: #2C2A2D; /* Base Dark Color */
+    color: #FFFFFF; /* Pure White */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Form Container */
+  .form-container {
+    background-color: #3A3A3D; /* Darker Gray */
+    border-radius: 10px;
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+    text-align: center;
+  }
+  
+  /* Form Heading */
+  .form-heading {
+    color: #FFD700; /* Gold */
+    margin-bottom: 20px;
+  }
+  
+  /* Form Labels */
+  .form-label {
+    display: block;
+    color: #FFFFFF; /* Pure White */
+    font-size: 1rem;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  
+  /* Form Inputs */
+  .form-control {
+    background-color: #3A3A3D; /* Darker Gray */
+    color: #F2F2F2; /* Light Gray */
+    border: 2px solid #FFD700; /* Gold */
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .form-control::placeholder {
+    color: #B0B0B0; /* Light Gray Placeholder */
+  }
+  
+  .form-control:focus {
+    border-color: #E16A20; /* Base Vibrant Orange */
+    outline: none;
+  }
+  
+  /* Textarea */
+  .input-advice {
+    height: 100px;
+    resize: none;
+  }
+  
+  /* Button Styles */
+  .btn-submit {
+    background-color: #3DDC97; /* Mint Green */
+    color: #FFFFFF; /* Pure White */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+  }
+  
+  .btn-submit:hover {
+    background-color: #4AE0A7; /* Lighter Mint */
+  }
+  
+  /* Success Message */
+  .success-message {
+    background-color: #3DDC97; /* Mint Green */
+    color: #FFFFFF; /* Pure White */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
