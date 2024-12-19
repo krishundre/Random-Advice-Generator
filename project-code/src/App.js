@@ -18,6 +18,7 @@ import PrivacyPolicy from './Components/PrivacyPolicy';
 import Advices from './Components/Advices';
 import AdditionalDetails from './Components/AdditionalDetails';
 import ProfilePage from './Components/ProfilePage';
+import ResetPassword from './Components/Reset-password';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
               <Route path='/privacy-policy' element={<PrivacyPolicy />} />
               <Route path='/advices' element={<Advices />} />
               <Route path='/additional-details' element={<AdditionalDetails />} />
+              <Route path='/reset-password' element={<ResetPassword />} />
             </Routes>
             <Footer />
           </div>

@@ -1,5 +1,7 @@
 import React from 'react';
 import './AboutUs.css';
+import aboutImg1 from "../Assets/aboutUs1.png"
+import aboutImg2 from "../Assets/aboutUs2.png"
 
 const AboutUs = () => {
     return (
@@ -16,14 +18,14 @@ const AboutUs = () => {
                         </p>
                     </div>
                     <div className="col-lg-6 col-md-12 about-image">
-                        <img src="/path-to-svg-friend-call.svg" alt="Friends on Call" className="about-img" />
+                        <img src={aboutImg1} alt="Friends on Call" className="about-img" />
                     </div>
                 </div>
 
                 {/* Second Row: Image on Left, Text on Right */}
                 <div className="row align-items-center">
                     <div className="col-lg-6 col-md-12 about-image">
-                        <img src="/path-to-svg-project.svg" alt="Friends Working on Project" className="about-img" />
+                        <img src={aboutImg2} alt="Friends Working on Project" className="about-img" />
                     </div>
                     <div className="col-lg-6 col-md-12 about-text">
                         <p>

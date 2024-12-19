@@ -3,6 +3,7 @@ import './Login.css';
 import { auth } from '../config/firebase';
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -28,7 +29,8 @@ function Login() {
         try {
             // Authenticate with email and password
             await signInWithEmailAndPassword(auth, email, password);
-            alert('Login successful!');
+            // alert('Login successful!');
+            toast.success('Login Successful')
             navigate('/'); // Redirect to home after login
         } catch (error) {
             console.error('Login error:', error.message);
@@ -42,11 +44,12 @@ function Login() {
         }
     };
 
+
     return (
         <div className="login-container d-flex justify-content-center align-items-center">
             <div className="form-container p-4">
                 <h2 className="text-center text-white mb-4">Login</h2>
-
+                <Toaster />
                 {error && <div className="alert alert-danger text-center">{error}</div>}
 
                 <form onSubmit={handleLogin}>
@@ -84,6 +87,7 @@ function Login() {
                 </form>
 
                 <div className="text-center mt-3">
+                    <a href="/reset-password" className="create-account">Forgot Password?</a> |
                     <a href="/signup" className="create-account">Create an Account</a>
                 </div>
             </div>

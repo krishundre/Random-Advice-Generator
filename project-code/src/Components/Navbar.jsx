@@ -4,6 +4,9 @@ import { auth } from '../config/firebase';
 import { signOut, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa'; // Importing a user icon
+import toast, { Toaster } from 'react-hot-toast';
+import logo from '../Assets/Logo.png'
+
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -23,7 +26,22 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      alert('Logged out successfully!');
+      // alert('Logged out successfully!');
+      toast.success('Login Successful',
+        {
+          style: {
+            border: '1px solid #713200',
+            padding: '16px',
+            background: '#000',
+            color: '#fff'
+          },
+          iconTheme: {
+            primary: '#713200',
+            secondary: '#FFFAEE',
+          },
+        }
+
+      );
       navigate('/login'); // Redirect to the login page after logout
     } catch (error) {
       console.error('Error logging out:', error);
@@ -32,6 +50,7 @@ const Navbar = () => {
 
   return (
     <>
+      <Toaster />
       {/* Development Banner */}
       <div className="development-banner text-center bg-danger">
         This project is still under development. 🚧
@@ -42,7 +61,7 @@ const Navbar = () => {
         <div className="container">
           {/* Logo */}
           <a className="navbar-brand" href="/">
-            <img src="https://placehold.co/150x50?text=Logo+Here" alt="Logo" />
+            <img src={logo} alt="Logo" />
           </a>
 
           {/* Navbar Toggler for mobile view */}
