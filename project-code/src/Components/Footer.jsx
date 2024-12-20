@@ -20,7 +20,7 @@ const Footer = () => {
             <ul className="list-unstyled">
               <li>Email: krisundre@gmail.com / vaibhskulk@gmail.com</li>
               <li>Phone: +91 85914 81281 / +91 75179 76019</li>
-              <li>Developer: Krish Undre & Vaibhavi Kulkarni</li>
+              <li>Developer: <a href='https://krishundre.vercel.app/' target='_blank'>Krish Undre</a> & Vaibhavi Kulkarni</li>
             </ul>
           </div>
 
