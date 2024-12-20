@@ -203,3 +203,21 @@
   background-color: #3DDC97;
   /* Mint Green for handle in on state */
 }
+
+.reaction-btn {
+  background: none;
+  border: 1px solid black;
+  color: #FFFFFF;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.reaction-btn.active {
+  background-color: #F89C4C;
+  /* Highlight active emoji */
+  color: #000;
+  /* Darker text for better visibility */
+}

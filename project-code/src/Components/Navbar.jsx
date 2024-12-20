@@ -98,7 +98,7 @@ const Navbar = () => {
               <>
                 {/* Icon-only View Profile Button */}
                 <a href="/profile" className="btn me-2 p-2" type="button" title="View Profile">
-                  <FaUserCircle size={24} color='#fff' />
+                  <FaUserCircle size={24} color='#f4d2ac' />
                 </a>
                 <button onClick={handleLogout} className="btn btn-logout" type="button">
                   Log Out

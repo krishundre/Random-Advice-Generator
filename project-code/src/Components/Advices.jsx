@@ -19,6 +19,7 @@ const Advices = () => {
     laugh: 0,
     wow: 0,
   });
+  const [userReaction, setUserReaction] = useState(null); // Track user's current reaction
   const [autoFetch, setAutoFetch] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -48,8 +49,9 @@ const Advices = () => {
       const randomAdvice = adviceList[Math.floor(Math.random() * adviceList.length)];
       setAdvice(randomAdvice.advice);
       setAdviceId(randomAdvice.id); // Store the advice ID for reaction updates
+      console.log(randomAdvice.id)
       setReactions(randomAdvice.reactions || {}); // Load reactions
-      console.log(randomAdvice.id);
+      setUserReaction(null); // Reset user's reaction when advice changes
     } catch (error) {
       console.error('Error fetching advice:', error);
     } finally {
@@ -58,19 +60,27 @@ const Advices = () => {
   };
 
   // Update reactions in Firestore
-  const updateReaction = async (reactionType) => {
+  const updateReaction = async (newReaction) => {
     if (!adviceId) return;
 
     try {
       const adviceDoc = doc(db, 'advices', adviceId);
-      const updatedReactions = {
-        ...reactions,
-        [reactionType]: (reactions[reactionType] || 0) + 1,
-      };
+      const updatedReactions = { ...reactions };
+
+      // Remove the previous reaction
+      if (userReaction) {
+        updatedReactions[userReaction] = Math.max(0, (updatedReactions[userReaction] || 1) - 1);
+      }
+
+      // Add the new reaction
+      updatedReactions[newReaction] = (updatedReactions[newReaction] || 0) + 1;
 
       // Update the reactions in Firestore
       await updateDoc(adviceDoc, { reactions: updatedReactions });
-      setReactions(updatedReactions); // Update the state
+
+      // Update state
+      setReactions(updatedReactions);
+      setUserReaction(newReaction);
     } catch (error) {
       console.error('Error updating reaction:', error);
     }
@@ -97,31 +107,31 @@ const Advices = () => {
 
         <div className="reaction-panel">
           <button
-            className="reaction-btn"
+            className={`reaction-btn ${userReaction === 'smile' ? 'active' : ''}`}
             onClick={() => updateReaction('smile')}
           >
             😊 {reactions.smile || 0}
           </button>
           <button
-            className="reaction-btn"
+            className={`reaction-btn ${userReaction === 'thumbsUp' ? 'active' : ''}`}
             onClick={() => updateReaction('thumbsUp')}
           >
             👍 {reactions.thumbsUp || 0}
           </button>
           <button
-            className="reaction-btn"
+            className={`reaction-btn ${userReaction === 'heart' ? 'active' : ''}`}
             onClick={() => updateReaction('heart')}
           >
             ❤️ {reactions.heart || 0}
           </button>
           <button
-            className="reaction-btn"
+            className={`reaction-btn ${userReaction === 'laugh' ? 'active' : ''}`}
             onClick={() => updateReaction('laugh')}
           >
             😂 {reactions.laugh || 0}
           </button>
           <button
-            className="reaction-btn"
+            className={`reaction-btn ${userReaction === 'wow' ? 'active' : ''}`}
             onClick={() => updateReaction('wow')}
           >
             😮 {reactions.wow || 0}
