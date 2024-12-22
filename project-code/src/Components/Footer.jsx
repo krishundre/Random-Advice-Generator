@@ -40,7 +40,7 @@ const Footer = () => {
             <ul className="list-unstyled social-icons">
               <li><a href="https://www.instagram.com/randomlyright24?igsh=amVkNGoxenBraG9q" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i> Instagram</a></li>
               <li><a href="https://x.com/randomlyright24" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i> X</a></li>
-              <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in"></i> LinkedIn</a></li>
+              {/*<li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in"></i> LinkedIn</a></li>*/}
             </ul>
           </div>
 

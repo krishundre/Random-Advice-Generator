@@ -147,19 +147,6 @@
         font-size: 0.7rem;
     }
 }
-.custom-btn-google {
-    background-color: #FFD700; /* Gold */
-    color: #2C2A2D; /* Dark Base */
-    border: none;
-    font-weight: bold;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.custom-btn-google:hover {
-    background-color: #F89C4C; /* Lighter Orange */
-    color: #FFFFFF; /* Pure White */
-}
 
 .custom-btn-primary {
     background-color: #E16A20; /* Base Vibrant Orange */
