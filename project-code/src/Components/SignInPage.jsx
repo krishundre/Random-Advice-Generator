@@ -47,7 +47,7 @@ function SignIn() {
     return (
         <div className="sign-in-container d-flex justify-content-center align-items-center">
             <div className="form-container p-4">
-                <h2 className="text-center text-white mb-4">Sign Up</h2>
+                <h2 className="text-center text-white mb-4"><b>Sign up</b> to get the advices you didn't know you needed</h2>
 
                 {error && <div className="alert alert-danger text-center">{error}</div>}
 

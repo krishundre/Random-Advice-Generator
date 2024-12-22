@@ -48,7 +48,7 @@ function Login() {
     return (
         <div className="login-container d-flex justify-content-center align-items-center">
             <div className="form-container p-4">
-                <h2 className="text-center text-white mb-4">Login</h2>
+                <h2 className="text-center text-white mb-4">Login to get advices you didn't know you needed</h2>
                 <Toaster />
                 {error && <div className="alert alert-danger text-center">{error}</div>}
 

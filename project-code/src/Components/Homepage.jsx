@@ -55,8 +55,8 @@ const Homepage = () => {
 
       {/* Section 2: Button */}
       <section className="button-section text-center">
-        <a href="/advices" className="btn btn-primary btn-lg btn-cta">
-          Let the Party Begin 🎉🚀
+        <a href="/advices" className="btn btn-primary btn-lg btn-cta animated-btn">
+          Get Advices! 🎉🚀
         </a>
       </section>
 
@@ -93,13 +93,7 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* Section 4: Testimonials Carousel */}
-      <section className="testimonials-carousel">
-        <h2 className="text-center">What People Are Saying 🌟</h2>
-        <TestimonialsCarousel />
-      </section>
-
-      {/* Section 5: Social Media Proofs */}
+      {/* Section 4: Social Media Proofs */}
       <section className="social-media-section text-center">
         <h2>Follow Us on Instagram 📸</h2>
         <div className="instagram-frames">
@@ -109,6 +103,13 @@ const Homepage = () => {
           <div className="instagram-frame"></div>
         </div>
       </section>
+
+      {/* Section 5: Testimonials Carousel */}
+      <section className="testimonials-carousel">
+        <h2 className="text-center">What People Are Saying 🌟</h2>
+        <TestimonialsCarousel />
+      </section>
+
     </div >
   );
 };
