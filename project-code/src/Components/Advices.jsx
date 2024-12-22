@@ -3,32 +3,27 @@ import './Advices.css';
 import { auth } from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { db } from '../config/firebase';
-import { MdSkipNext, MdReport } from "react-icons/md";
-import { FaShareAlt } from "react-icons/fa";
-import Switch from "react-switch";
+import { MdSkipNext, MdReport } from 'react-icons/md';
+import { FaShareAlt } from 'react-icons/fa';
+import Switch from 'react-switch';
 
 const Advices = () => {
   const [advice, setAdvice] = useState('');
-  const [adviceId, setAdviceId] = useState(null); // Store current advice ID
-  const [reactions, setReactions] = useState({
-    smile: 0,
-    thumbsUp: 0,
-    heart: 0,
-    laugh: 0,
-    wow: 0,
-  });
-  const [userReaction, setUserReaction] = useState(null); // Track user's current reaction
+  const [adviceId, setAdviceId] = useState(null);
+  const [reactions, setReactions] = useState({});
+  const [userReaction, setUserReaction] = useState(null);
   const [autoFetch, setAutoFetch] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const user = auth.currentUser;
 
   // Check if user is authenticated
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        navigate('/login'); // Redirect to login if not authenticated or logged in
+        navigate('/login'); // Redirect to login if not authenticated
       }
     });
     return () => unsubscribe();
@@ -45,13 +40,17 @@ const Advices = () => {
         ...doc.data(),
       }));
 
-      // Select a random advice
+      if (adviceList.length === 0) {
+        setAdvice('No advice available.');
+        setAdviceId(null);
+        return;
+      }
+
       const randomAdvice = adviceList[Math.floor(Math.random() * adviceList.length)];
       setAdvice(randomAdvice.advice);
-      setAdviceId(randomAdvice.id); // Store the advice ID for reaction updates
-      console.log(randomAdvice.id)
-      setReactions(randomAdvice.reactions || {}); // Load reactions
-      setUserReaction(null); // Reset user's reaction when advice changes
+      setAdviceId(randomAdvice.id);
+      setReactions(randomAdvice.reactions || {});
+      setUserReaction(null);
     } catch (error) {
       console.error('Error fetching advice:', error);
     } finally {
@@ -59,24 +58,35 @@ const Advices = () => {
     }
   };
 
-  // Update reactions in Firestore
+  // Update reactions in Firestore and track reacted advice
   const updateReaction = async (newReaction) => {
-    if (!adviceId) return;
+    if (!adviceId || !user) return;
 
     try {
       const adviceDoc = doc(db, 'advices', adviceId);
+      const userDoc = doc(db, 'users', user.uid); // User's document in Firestore
       const updatedReactions = { ...reactions };
 
       // Remove the previous reaction
       if (userReaction) {
         updatedReactions[userReaction] = Math.max(0, (updatedReactions[userReaction] || 1) - 1);
+
+        // Remove the previous advice from the user's reacted list
+        await updateDoc(userDoc, {
+          reactedAdvices: arrayRemove({ adviceId, reaction: userReaction }),
+        });
       }
 
       // Add the new reaction
       updatedReactions[newReaction] = (updatedReactions[newReaction] || 0) + 1;
 
-      // Update the reactions in Firestore
+      // Update reactions in Firestore
       await updateDoc(adviceDoc, { reactions: updatedReactions });
+
+      // Add the new advice to the user's reacted list
+      await updateDoc(userDoc, {
+        reactedAdvices: arrayUnion({ adviceId, reaction: newReaction }),
+      });
 
       // Update state
       setReactions(updatedReactions);
@@ -91,9 +101,9 @@ const Advices = () => {
 
     let interval;
     if (autoFetch) {
-      interval = setInterval(fetchAdvice, 10000); // Fetch every 10 seconds if auto-refresh is on
+      interval = setInterval(fetchAdvice, 10000);
     }
-    return () => clearInterval(interval); // Clean up interval when component is unmounted
+    return () => clearInterval(interval);
   }, [autoFetch]);
 
   return (
@@ -102,40 +112,24 @@ const Advices = () => {
         {loading ? (
           <p className="advice-text">Loading advice...</p>
         ) : (
-          <p className="advice-text">{advice || 'No advice available'}</p>
+          <p className="advice-text">{advice}</p>
         )}
 
         <div className="reaction-panel">
-          <button
-            className={`reaction-btn ${userReaction === 'smile' ? 'active' : ''}`}
-            onClick={() => updateReaction('smile')}
-          >
-            😊 {reactions.smile || 0}
-          </button>
-          <button
-            className={`reaction-btn ${userReaction === 'thumbsUp' ? 'active' : ''}`}
-            onClick={() => updateReaction('thumbsUp')}
-          >
-            👍 {reactions.thumbsUp || 0}
-          </button>
-          <button
-            className={`reaction-btn ${userReaction === 'heart' ? 'active' : ''}`}
-            onClick={() => updateReaction('heart')}
-          >
-            ❤️ {reactions.heart || 0}
-          </button>
-          <button
-            className={`reaction-btn ${userReaction === 'laugh' ? 'active' : ''}`}
-            onClick={() => updateReaction('laugh')}
-          >
-            😂 {reactions.laugh || 0}
-          </button>
-          <button
-            className={`reaction-btn ${userReaction === 'wow' ? 'active' : ''}`}
-            onClick={() => updateReaction('wow')}
-          >
-            😮 {reactions.wow || 0}
-          </button>
+          {['smile', 'thumbsUp', 'heart', 'laugh', 'wow'].map((reaction) => (
+            <button
+              key={reaction}
+              className={`reaction-btn ${userReaction === reaction ? 'active' : ''}`}
+              onClick={() => updateReaction(reaction)}
+            >
+              {reaction === 'smile' && '😊'}
+              {reaction === 'thumbsUp' && '👍'}
+              {reaction === 'heart' && '❤️'}
+              {reaction === 'laugh' && '😂'}
+              {reaction === 'wow' && '😮'}
+              {reactions[reaction] || 0}
+            </button>
+          ))}
         </div>
 
         <div className="button-container">
@@ -156,7 +150,7 @@ const Advices = () => {
         <div className="auto-refresh">
           <label>
             <Switch
-              onChange={(checked) => setAutoFetch(checked)}
+              onChange={setAutoFetch}
               checked={autoFetch}
               offColor="#3A3A3D"
               onColor="#E16A20"

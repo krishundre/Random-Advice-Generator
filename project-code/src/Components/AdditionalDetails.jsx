@@ -13,6 +13,7 @@ const AdditionalDetails = () => {
     const [phoneError, setPhoneError] = useState('');
     const [loading, setLoading] = useState(false);
     const [verifyLoading, setVerifyLoading] = useState(false); // Loading state for email verification
+    const [avatarUrl, setAvatarUrl] = useState(''); // Avatar URL
     const navigate = useNavigate();
 
     // Fetch the current user's email verification status
@@ -65,6 +66,7 @@ const AdditionalDetails = () => {
     const checkUsernameAvailability = async (value) => {
         if (!value.trim()) {
             setUsernameError('Username cannot be empty');
+            setAvatarUrl(''); // Clear avatar if username is invalid
             return;
         }
 
@@ -75,8 +77,11 @@ const AdditionalDetails = () => {
 
             if (docSnap.exists()) {
                 setUsernameError('Username is already taken');
+                setAvatarUrl(''); // Clear avatar if username is taken
             } else {
                 setUsernameError('');
+                const avatar = `https://api.dicebear.com/9.x/dylan/svg?seed=${encodeURIComponent(value)}`;
+                setAvatarUrl(avatar); // Set avatar URL
             }
         } catch (error) {
             console.error('Error checking username:', error);
@@ -112,14 +117,15 @@ const AdditionalDetails = () => {
         try {
             const user = auth.currentUser;
             if (user) {
-                // Save username and phone number to the Firestore database
+                // Save username, phone number, and avatar URL to the Firestore database
                 await setDoc(doc(db, 'users', user.uid), {
                     username: username,
                     phone: phone,
                     emailVerified: emailVerified,
                     email: user.email, // Store the user's email
                     uid: user.uid, // Store the user's UID for reference
-                    createdAt: serverTimestamp() // Store the time at which account was created
+                    avatarUrl: avatarUrl, // Store the generated avatar URL
+                    createdAt: serverTimestamp(), // Store the time at which account was created
                 });
 
                 // Save the username to the 'usernames' collection to avoid duplication
@@ -152,6 +158,13 @@ const AdditionalDetails = () => {
                         {usernameError && <p className="error-text">{usernameError}</p>}
                     </div>
 
+                    {avatarUrl && (
+                        <div className="avatar-preview">
+                            <label>Your URL will be generated based on Username</label>
+                            <img src={avatarUrl} alt="Avatar Preview" />
+                        </div>
+                    )}
+
                     <div className="form-group">
                         <label htmlFor="phone">Phone Number</label>
                         <input
@@ -167,7 +180,7 @@ const AdditionalDetails = () => {
 
                     <div className="form-group">
                         {emailVerified ? (
-                            <span className="badge bg-success">Email Verified!!</span>
+                            <span className="badge bg-success">Email Verified!</span>
                         ) : (
                             <span className="badge bg-danger">Email Not Verified Yet!</span>
                         )}
