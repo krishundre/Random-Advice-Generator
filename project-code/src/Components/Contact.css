@@ -2,8 +2,15 @@
 .contact-page {
   background-color: #2C2A2D;
   color: #FFFFFF;
-  padding: 40px 100px; /* Increased horizontal padding for more space */
+  padding: 40px 100px;
   min-height: 100vh;
+}
+
+/* Adjust spacing for smaller screens */
+@media (max-width: 768px) {
+  .contact-page {
+    padding: 20px;
+  }
 }
 
 .contact-form-wrapper {
@@ -13,16 +20,34 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Adjust form padding for smaller screens */
+@media (max-width: 768px) {
+  .contact-form-wrapper {
+    padding: 20px;
+  }
+}
+
 .contact-heading {
   text-align: center;
   margin-bottom: 20px;
   color: #FFFFFF;
+  font-size: 1.5rem;
+  /* Slightly larger heading */
+}
+
+/* Adjust heading font size for smaller screens */
+@media (max-width: 768px) {
+  .contact-heading {
+    font-size: 1.2rem;
+  }
 }
 
 /* Form Labels */
 .form-label {
   color: #FFFFFF;
   font-weight: bold;
+  font-size: 0.9rem;
+  /* Slightly smaller font */
 }
 
 /* Input Fields */
@@ -31,7 +56,10 @@
   color: #F2F2F2;
   border: 2px solid #FFD700;
   border-radius: 5px;
-  padding: 10px; /* Added padding for better spacing */
+  padding: 10px;
+  width: 100%;
+  /* Full-width input fields */
+  font-size: 1rem;
 }
 
 .contact-input::placeholder {
@@ -49,7 +77,11 @@
   color: #F2F2F2;
   border: 2px solid #FFD700;
   border-radius: 5px;
-  padding: 10px; /* Added padding for better spacing */
+  padding: 10px;
+  width: 100%;
+  /* Full-width textarea */
+  font-size: 1rem;
+  resize: vertical;
 }
 
 .contact-textarea::placeholder {
@@ -70,6 +102,7 @@
   border-radius: 5px;
   font-weight: bold;
   width: 100%;
+  /* Full-width button */
 }
 
 .contact-btn:hover {
@@ -83,6 +116,8 @@
   padding: 10px;
   border-radius: 5px;
   margin-top: 15px;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 .success-message {
@@ -91,4 +126,33 @@
   padding: 10px;
   border-radius: 5px;
   margin-top: 15px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+
+  .error-message,
+  .success-message {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .form-label {
+    font-size: 0.8rem;
+  }
+
+  .contact-input,
+  .contact-textarea {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
 }
