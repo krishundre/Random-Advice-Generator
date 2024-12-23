@@ -61,7 +61,7 @@
 }
 
 /* Button Container for Next Button and Emojis */
-.button-container {
+.button-container1 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,28 +89,55 @@
   /* Lighter Orange Tone */
 }
 
-/* Report Button */
-.report-btn {
-  background-color: #FF4E50;
-  /* Vibrant Red */
-  border-radius: 5px;
-  color: #FFFFFF;
-  font-weight: bold;
-  padding: 10px 15px;
-  transition: background-color 0.3s;
+/* Button Container */
+.button-container2 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  /* Space between buttons */
   margin-bottom: 20px;
   position: fixed;
   bottom: 20px;
   right: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+/* Add Advice Button */
+.btn-add-advice {
+  background-color: #3DDC97;
+  /* Mint Green */
+  color: #FFFFFF;
+  /* Pure White */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-add-advice:hover {
+  background-color: #2AB67D;
+  /* Darker Mint Green */
+}
+
+/* Report Button */
+.report-btn {
+  background-color: #FF4E50;
+  /* Vibrant Red */
+  color: #FFFFFF;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .report-btn:hover {
   background-color: #D13A3D;
   /* Darker Red */
 }
+
 
 /* Auto-refresh Section */
 .auto-refresh {

@@ -3,10 +3,10 @@ import './Advices.css';
 import { auth } from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, arrayUnion, arrayRemove, addDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { MdSkipNext, MdReport } from 'react-icons/md';
-import { FaShareAlt } from 'react-icons/fa';
+import { FaShareAlt, FaPlus } from 'react-icons/fa';
 import Switch from 'react-switch';
 
 const Advices = () => {
@@ -64,7 +64,7 @@ const Advices = () => {
 
     try {
       const adviceDoc = doc(db, 'advices', adviceId);
-      const userDoc = doc(db, 'users', user.uid); // User's document in Firestore
+      const userDoc = doc(db, 'users', user.uid);
       const updatedReactions = { ...reactions };
 
       // Remove the previous reaction
@@ -88,13 +88,13 @@ const Advices = () => {
         reactedAdvices: arrayUnion({ adviceId, reaction: newReaction }),
       });
 
-      // Update state
       setReactions(updatedReactions);
       setUserReaction(newReaction);
     } catch (error) {
       console.error('Error updating reaction:', error);
     }
   };
+
 
   useEffect(() => {
     fetchAdvice();
@@ -132,7 +132,7 @@ const Advices = () => {
           ))}
         </div>
 
-        <div className="button-container">
+        <div className="button-container1">
           <button className="next-btn" onClick={fetchAdvice}>
             <MdSkipNext />
           </button>
@@ -141,11 +141,15 @@ const Advices = () => {
           </button>
         </div>
 
-        <div className="reaction-panel">
+        <div className="button-container2">
+          <a className="btn btn-add-advice" href='/add-advice'>
+            Add Advice <FaPlus />
+          </a>
           <button className="btn btn-danger report-btn">
             Report <MdReport className="fs-4 ms-1" />
           </button>
         </div>
+
 
         <div className="auto-refresh">
           <label>
