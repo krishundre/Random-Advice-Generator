@@ -102,13 +102,13 @@ const Homepage = () => {
         <div className="instagram-frames">
           {/* Instagram Frame placeholders */}
           <div className="instagram-frame">
-          <img src={ss1} className="benefit-image w-50"></img>
+            <img src={ss1} className="benefit-image"></img>
           </div>
           <div className="instagram-frame">
-          <img src={ss2} className="benefit-image w-50"></img>
+            <img src={ss2} className="benefit-image "></img>
           </div>
           <div className="instagram-frame">
-          <img src={ss3} className="benefit-image w-50"></img>
+            <img src={ss3} className="benefit-image "></img>
           </div>
         </div>
       </section>
