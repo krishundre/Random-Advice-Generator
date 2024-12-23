@@ -1,18 +1,44 @@
 import React, { useState } from 'react';
 import './AddAdvice.css';
+import { db, auth } from '../config/firebase'; // Import Firebase configurations
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'; // Firestore methods
+import { toast, Toaster } from 'react-hot-toast';
 
 const AddAdvice = () => {
   const [advice, setAdvice] = useState('');
   const [category, setCategory] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (advice.trim() && category.trim()) {
-      // Save advice logic here (e.g., send to Firestore)
-      setSuccessMessage('Your advice has been added! Thank you for sharing your wisdom. 🌟');
-      setAdvice('');
-      setCategory('');
+      try {
+        const user = auth.currentUser; // Get current authenticated user
+        if (!user) {
+          alert('You must be logged in to submit advice.');
+          return;
+        }
+
+        // Add advice to the 'advices' collection in Firestore
+        await addDoc(collection(db, 'advices'), {
+          advice: advice.trim(),
+          category: category.trim(),
+          source: user.displayName || user.email, // Use username if available, fallback to email
+          addedDate: serverTimestamp(), // Firestore server timestamp
+        });
+
+        toast('Your advice has been added! Thank you for sharing your wisdom. 🌟', {
+          style: {
+            background: '#000',
+            color: '#E16A20',
+          }
+        });
+        setAdvice('');
+        setCategory('');
+      } catch (error) {
+        console.error('Error adding advice to Firestore:', error);
+        alert('Failed to add advice. Please try again.');
+      }
     } else {
       alert('Please fill in all fields before submitting.');
     }
@@ -62,8 +88,10 @@ const AddAdvice = () => {
 
           <button type="submit" className="btn btn-submit">🌟 Add My Advice</button>
         </form>
-
-        {successMessage && <div className="success-message">{successMessage}</div>}
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
       </div>
     </div>
   );

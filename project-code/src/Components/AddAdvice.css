@@ -97,7 +97,7 @@
 
 /* Button Styles */
 .btn-submit {
-  background: linear-gradient(135deg, #3DDC97, #2AB67D);
+  background: linear-gradient(135deg, #E16A20, #2AB67D);
   color: #FFFFFF;
   /* Pure White */
   border: none;
@@ -111,7 +111,7 @@
 }
 
 .btn-submit:hover {
-  background: linear-gradient(135deg, #4AE0A7, #3DDC97);
+  background: linear-gradient(135deg, #E16A20, #653415);
   transform: translateY(-2px);
 }
 
