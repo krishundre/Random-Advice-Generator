@@ -4,6 +4,7 @@
   color: #FFFFFF;
   padding: 40px 100px;
   min-height: 100vh;
+  background: url('../Assets/SignUp_LogIn_BG.png');
 }
 
 /* Adjust spacing for smaller screens */

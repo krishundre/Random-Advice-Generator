@@ -11,6 +11,8 @@
   padding: 20px;
   background: linear-gradient(135deg, #2C2A2D 60%, #3A3A3D);
   font-family: 'Arial', sans-serif;
+  background: url('../Assets/HomePageBackground.png');
+
 }
 
 /* Form Container */
