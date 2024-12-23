@@ -5,6 +5,9 @@ import TestimonialsCarousel from "./Testimonials";
 import anonymity from "../Assets/anonymity.jpg"
 import community from "../Assets/community.jpg"
 import reaction1 from "../Assets/reaction1.png"
+import ss1 from "../Assets/ss1.jpeg"
+import ss2 from "../Assets/ss2.jpeg"
+import ss3 from "../Assets/ss3.jpeg"
 import { TypeAnimation } from 'react-type-animation';
 import { Tilt } from 'react-tilt'
 
@@ -98,9 +101,15 @@ const Homepage = () => {
         <h2>Follow Us on Instagram 📸</h2>
         <div className="instagram-frames">
           {/* Instagram Frame placeholders */}
-          <div className="instagram-frame"></div>
-          <div className="instagram-frame"></div>
-          <div className="instagram-frame"></div>
+          <div className="instagram-frame">
+          <img src={ss1} className="benefit-image w-50"></img>
+          </div>
+          <div className="instagram-frame">
+          <img src={ss2} className="benefit-image w-50"></img>
+          </div>
+          <div className="instagram-frame">
+          <img src={ss3} className="benefit-image w-50"></img>
+          </div>
         </div>
       </section>
 
