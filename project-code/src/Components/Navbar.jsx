@@ -52,9 +52,11 @@ const Navbar = () => {
     <>
       <Toaster />
       {/* Development Banner */}
+      {/*
       <div className="development-banner text-center bg-danger">
         This project is still under development. 🚧
       </div>
+      */}
 
       {/* Navbar */}
       <nav className="navbar navbar-expand-lg navbar-dark">
