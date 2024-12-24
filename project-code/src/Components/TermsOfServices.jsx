@@ -4,6 +4,7 @@ import './TermsOfService.css';
 const TermsOfService = () => {
     return (
         <div className="tos-full-page-container px-5 p-md-5">
+            <div className="privacy-policy-wrapper">
             <div className="tos-header">
                 <h1>Terms of Service</h1>
                 <p>Effective Date: 1st November 2024</p>
@@ -68,6 +69,7 @@ const TermsOfService = () => {
             <div className="tos-footer">
                 <p>If you have any questions or concerns about these terms, feel free to contact us at krisundre@gmail.com</p>
             </div>
+        </div>
         </div>
     );
 };
