@@ -27,7 +27,7 @@ const Navbar = () => {
     try {
       await signOut(auth);
       // alert('Logged out successfully!');
-      toast.success('Login Successful',
+      toast.success('Logout Successful',
         {
           style: {
             border: '1px solid #713200',

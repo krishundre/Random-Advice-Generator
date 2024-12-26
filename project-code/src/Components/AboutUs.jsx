@@ -10,11 +10,14 @@ const AboutUs = () => {
                 {/* First Row: Text on Left, Image on Right */}
                 <div className="row align-items-center">
                     <div className="col-lg-6 col-md-12 about-text">
-                        <p>
-                            The story of <strong>Random Advice Generator</strong> started with a spark of fun and creativity. As a freelance frontend web developer, I, Krish Undre, used to work on various random projects like hotel management systems or online directories. Every time I completed a project, I’d send the URL to my best friend, Samiksha Baradia, for her feedback. She has an incredible eye for creativity and detail, always suggesting little tweaks that made my projects even better. One day, during a casual call, Samiksha asked, “Krish, give me a random piece of advice,” and without thinking, I said, “Don’t miss outings with your cousins!” We both laughed, and then I asked her for advice. She replied, “Don’t cross lines with your College HOD!” It became a fun back-and-forth, and right there, the seed for the Random Advice Generator was planted. 🌱
+                        <p><b>Krish's POV</b><br/>
+                        The story of the Random Advice Generator began as a spark of fun and creativity. As a freelance frontend web developer, I, Krish Undre, often worked on random projects like hotel management systems or online directories. Each time I completed a project, I’d eagerly send the URL to my best friend, Samiksha Baradia, for her feedback. With her incredible eye for creativity and detail, she always had a way of suggesting just the right tweaks to make things shine.
                         </p>
                         <p>
-                            The idea got us thinking, "What if we create a website that gives random advice to users?" We spent the next half hour brainstorming ideas, adding features, and discussing what could make it interesting. I jotted everything down in my diary, but life got busy, and the project was left on the back burner.
+                        One day, during a casual call, Samiksha asked, “Krish, give me a random piece of advice,” and without much thought, I said, “Don’t miss outings with your cousins!” We both laughed, and I threw the question back at her. She quipped, “Don’t cross lines with your College HOD!” It turned into this fun exchange, sparking laughter and a little wisdom. That’s when the seed for the Random Advice Generator was planted. 🌱
+                        </p>
+                        <p>
+                        The idea fascinated us: “What if we created a website to share random advice?” That single moment led to a brainstorming session full of ideas for features and creative touches, all jotted down in my diary. However, life got busy, and the idea was shelved for later.
                         </p>
                     </div>
                     <div className="col-lg-6 col-md-12 about-image">
@@ -28,11 +31,14 @@ const AboutUs = () => {
                         <img src={aboutImg2} alt="Friends Working on Project" className="about-img" />
                     </div>
                     <div className="col-lg-6 col-md-12 about-text">
-                        <p>
-                            Fast forward a year, during my first year of MCA at MES’s IMCC, we got assigned our first group project. I teamed up with Vaibhavi Kulkarni, and during our project discussion, I mentioned the idea of the Random Advice Generator. Her immediate reaction was, "That’s something out of the box!" 💡
+                        <p><b>Vaibhavi's POV</b><br/>
+                        Fast forward a year, during my first year of MCA at MES’s IMCC, I had the chance to team up with Krish for a group project. During our brainstorming session, he mentioned this old idea about a “Random Advice Generator” that he and Samiksha had come up with. The moment I heard it, I was hooked. “That’s something out of the box!” I told him. The concept felt simple yet unique, and I could already see the potential for a fun and engaging project.
                         </p>
                         <p>
-                            With her enthusiasm and Samiksha’s original spark of creativity, we decided to bring the project to life. The idea grew from a casual conversation into something we were genuinely excited to build. Now, here we are, a team of three – <strong>Samiksha Baradia</strong>, <strong>Krish Undre</strong>, and <strong>Vaibhavi Kulkarni</strong> – working together to share random, fun, and sometimes thought-provoking advice with the world. 😄
+                        We decided to make it a reality, and from the start, it felt like a true collaboration.While I and Krish handled the technical aspects and focused on refining ideas and helping polish the overall execution, Samiksha brought her creative flair. Together, we built on each other’s strengths, transforming a casual idea into something meaningful and exciting.
+                        </p>
+                        <p>
+                        For me, the best part was how seamlessly we worked as a team. What started as a spontaneous suggestion between Krish and Samiksha became a shared dream, and each of us added something special. Today, I’m proud to say the Random Advice Generator isn’t just a fun project; it’s a blend of our shared creativity and teamwork, ready to spread random, thought-provoking advice to the world. 😄
                         </p>
                     </div>
                 </div>
