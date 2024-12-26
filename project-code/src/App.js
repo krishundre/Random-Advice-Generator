@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { LoadingProvider } from './context/LoadingContext'; // Ensure LoadingProvider is imported
 import Loader from './Components/Loader'; // Ensure Loader component is imported
-
+import { Analytics } from "@vercel/analytics/react"
 // Import components
 import Homepage from './Components/Homepage';
 import Footer from './Components/Footer';
@@ -27,6 +27,7 @@ function App() {
 
       <LoadingProvider> {/* Wrap everything with LoadingProvider */}
         <Router>
+          <Analytics />
           <div className="App">
             <Navbar />
             <Loader /> {/* Loader will be globally available */}
@@ -43,7 +44,7 @@ function App() {
               <Route path='/advices' element={<Advices />} />
               <Route path='/additional-details' element={<AdditionalDetails />} />
               <Route path='/reset-password' element={<ResetPassword />} />
-              <Route path='/add-advice' element={<AddAdvice/>} />
+              <Route path='/add-advice' element={<AddAdvice />} />
             </Routes>
             <Footer />
           </div>
