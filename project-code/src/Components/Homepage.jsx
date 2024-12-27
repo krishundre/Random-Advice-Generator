@@ -10,6 +10,7 @@ import ss2 from "../Assets/ss2.jpeg"
 import ss3 from "../Assets/ss3.jpeg"
 import { TypeAnimation } from 'react-type-animation';
 import { Tilt } from 'react-tilt'
+import AdviceOfDay from "./AdviceOfDay";
 
 const defaultOptions = {
   reverse: false,  // reverse the tilt direction
@@ -96,6 +97,7 @@ const Homepage = () => {
         </div>
       </section>
 
+      <AdviceOfDay />
       {/* Section 4: Social Media Proofs */}
       <section className="social-media-section text-center">
         <h2>Follow Us on Instagram 📸</h2>

@@ -1,0 +1,77 @@
+/* Advice of the Day Section */
+.advice-of-day {
+    background-color: #2C2A2D;
+    /* Base Dark Color */
+    color: #FFFFFF;
+    /* Pure White */
+    border-radius: 12px;
+    padding: 25px 20px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtle Glow Effect */
+.advice-of-day::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(225, 106, 32, 0.3), transparent);
+    transform: rotate(-45deg);
+    animation: glow 6s infinite linear;
+    z-index: 0;
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        transform: rotate(-45deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(-45deg) scale(1.1);
+    }
+}
+
+/* Content Styling */
+.advice-of-day>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* Heading */
+.advice-heading {
+    font-size: 1.8rem;
+    color: #FFD700;
+    /* Gold */
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0px 4px 8px rgba(255, 215, 0, 0.6);
+}
+
+/* Advice Text */
+.advice-text {
+    font-size: 1.2rem;
+    color: #F2F2F2;
+    /* Light Off-White */
+    line-height: 1.8;
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Transparent overlay */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: inset 0px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Hover Animation */
+.advice-of-day:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
+}
