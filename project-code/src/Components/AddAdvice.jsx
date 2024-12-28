@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import './AddAdvice.css';
 import { db, auth } from '../config/firebase'; // Import Firebase configurations
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore'; // Firestore methods
+import { collection, addDoc, doc, updateDoc, arrayUnion, serverTimestamp } from 'firebase/firestore'; // Firestore methods
 import { toast, Toaster } from 'react-hot-toast';
 
 const AddAdvice = () => {
   const [advice, setAdvice] = useState('');
   const [category, setCategory] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (advice.trim() && category.trim()) {
       try {
+        setLoading(true);
+
         const user = auth.currentUser; // Get current authenticated user
         if (!user) {
           alert('You must be logged in to submit advice.');
@@ -20,24 +23,40 @@ const AddAdvice = () => {
         }
 
         // Add advice to the 'advices' collection in Firestore
-        await addDoc(collection(db, 'advices'), {
+        const adviceRef = await addDoc(collection(db, 'advices'), {
           advice: advice.trim(),
           category: category.trim(),
           source: user.displayName || user.email, // Use username if available, fallback to email
           addedDate: serverTimestamp(), // Firestore server timestamp
         });
 
-        toast('Your advice has been added! Thank you for sharing your wisdom. 🌟', {
+        // Update the user's document in the 'users' collection
+        const userDocRef = doc(db, 'users', user.uid);
+        await updateDoc(userDocRef, {
+          addedAdvices: arrayUnion({
+            adviceId: adviceRef.id, // Reference to the advice document ID
+            adviceText: advice.trim(),
+            category: category.trim(),
+            addedDate: new Date().toISOString(), // Store the current date in ISO format
+          }),
+        });
+
+        // Show a success message
+        toast('Your advice has been added successfully! Thank you for sharing your wisdom. 🌟', {
           style: {
             background: '#000',
             color: '#E16A20',
-          }
+          },
         });
+
+        // Reset form fields
         setAdvice('');
         setCategory('');
       } catch (error) {
         console.error('Error adding advice to Firestore:', error);
         alert('Failed to add advice. Please try again.');
+      } finally {
+        setLoading(false);
       }
     } else {
       alert('Please fill in all fields before submitting.');
@@ -86,15 +105,15 @@ const AddAdvice = () => {
             </select>
           </div>
 
-          <button type="submit" className="btn btn-submit">🌟 Add My Advice</button>
+          <button type="submit" className="btn btn-submit" disabled={loading}>
+            {loading ? 'Adding Advice...' : '🌟 Add My Advice'}
+          </button>
         </form>
-        <Toaster
-          position="top-center"
-          reverseOrder={false}
-        />
+        <Toaster position="top-center" reverseOrder={false} />
       </div>
     </div>
   );
 };
 
 export default AddAdvice;
+

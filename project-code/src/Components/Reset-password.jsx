@@ -3,7 +3,7 @@ import './ResetPassword.css';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth, db } from '../config/firebase'; // Ensure db is imported for Firestore
 import { collection, query, where, getDocs } from 'firebase/firestore'; // Firestore functions
-// import ResetPasswordImage from '../Assets/Reset-password.png'; // Correct path to your image
+import toast, { Toaster } from 'react-hot-toast';
 
 const ResetPassword = () => {
     const [email, setEmail] = useState('');
@@ -17,7 +17,7 @@ const ResetPassword = () => {
         setError('');
 
         if (!email.trim()) {
-            setError('Email is required');
+            toast.error('Email is required');
             return;
         }
 
@@ -37,9 +37,27 @@ const ResetPassword = () => {
 
             // If email exists, send the password reset email
             await sendPasswordResetEmail(auth, email);
-            setMessage('Password reset link sent! Please check your email.');
+            toast('Password reset link sent! Please check your email.',
+                {
+                    icon: '👏',
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                    },
+                }
+            );
         } catch (err) {
-            setError('Failed to send reset email. Please try again.');
+            toast('Failed to send reset email. Please try again.',
+                {
+                    icon: '👏',
+                    style: {
+                        borderRadius: '10px',
+                        background: '#333',
+                        color: '#fff',
+                    },
+                }
+            );
             console.error('Error sending reset email:', err);
         } finally {
             setLoading(false);
@@ -49,6 +67,7 @@ const ResetPassword = () => {
     return (
         <div className="reset-password-container">
             <div className="reset-password-card">
+                <Toaster />
                 {/* <img src={ResetPasswordImage} alt="Reset Password" className="reset-password-image" /> */}
                 <h2>Reset Password</h2>
                 <p>Enter your email to receive a password reset link.</p>

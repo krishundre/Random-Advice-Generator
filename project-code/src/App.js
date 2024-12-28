@@ -20,6 +20,7 @@ import AdditionalDetails from './Components/AdditionalDetails';
 import ProfilePage from './Components/ProfilePage';
 import ResetPassword from './Components/Reset-password';
 import AddAdvice from './Components/AddAdvice';
+import SubscribeStrip from './Components/subscribe';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
               <Route path='/add-advice' element={<AddAdvice />} />
             </Routes>
             <Footer />
+            <SubscribeStrip />
           </div>
         </Router>
       </LoadingProvider>

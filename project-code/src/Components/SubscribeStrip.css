@@ -1,0 +1,96 @@
+/* Minimal Subscribe Strip */
+.subscribe-strip {
+    background-color: #2C2A2D;
+    /* Base Dark Color */
+    color: #FFFFFF;
+    /* Pure White */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Form Styles */
+.subscribe-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Input Field */
+.subscribe-input {
+    flex: 1;
+    background-color: #3A3A3D;
+    /* Darker Gray */
+    color: #FFFFFF;
+    /* Pure White */
+    border: 1px solid #FFD700;
+    /* Gold */
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 0.9rem;
+}
+
+.subscribe-input::placeholder {
+    color: #B0B0B0;
+    /* Light Gray Placeholder */
+}
+
+.subscribe-input:focus {
+    outline: none;
+    border-color: #E16A20;
+    /* Vibrant Orange */
+}
+
+/* Subscribe Button */
+.btn-subscribe {
+    background-color: #E16A20;
+    /* Base Vibrant Orange */
+    color: #FFFFFF;
+    /* Pure White */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.btn-subscribe:hover {
+    background-color: #F89C4C;
+    /* Lighter Orange */
+}
+
+/* Success and Error Messages */
+.subscribe-success {
+    color: #3DDC97;
+    /* Mint Green */
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
+.subscribe-error {
+    color: #FF4E50;
+    /* Vibrant Red */
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .subscribe-form {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .btn-subscribe {
+        width: 100%;
+    }
+}

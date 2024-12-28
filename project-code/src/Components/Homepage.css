@@ -87,10 +87,14 @@
 
 .benefit-block {
   background-color: transparent;
+  min-height: 380px;
   padding: 20px;
   border: 1px solid #FFD700;
   border-radius: 8px;
   margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .benefit-image {
