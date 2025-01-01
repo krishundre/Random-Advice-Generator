@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa'; // Importing a user icon
 import toast, { Toaster } from 'react-hot-toast';
 import logo from '../Assets/Logo.png'
+import { IoMdHome, IoMdInformationCircle, IoMdContact, IoMdContacts } from "react-icons/io";
+import { TbLogout } from "react-icons/tb";
 
 
 const Navbar = () => {
@@ -66,44 +68,58 @@ const Navbar = () => {
             <img src={logo} alt="Logo" />
           </a>
 
-          {/* Navbar Toggler for mobile view */}
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
 
           {/* Center Links */}
           <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
+
             <ul className="navbar-nav">
               <li className="nav-item d-flex align-items-center justify-content-center">
-                <a className="nav-link" href="/">Home</a>
+                <a className="nav-link d-flex align-items-center justify-content-center" href="/">
+                  <IoMdHome className='me-1' />Home
+                </a>
               </li>
               <li className="nav-item d-flex align-items-center justify-content-center">
-                <a className="nav-link" href="/about">About</a>
+                <a className="nav-link d-flex align-items-center justify-content-center" href="/about">
+                  <IoMdInformationCircle className='me-1' />About</a>
               </li>
               <li className="nav-item d-flex align-items-center justify-content-center">
-                <a className="nav-link" href="/contact">Contact</a>
+                <a className="nav-link d-flex align-items-center justify-content-center" href="/contact">
+                  <IoMdContacts className='me-1' />Contact</a>
               </li>
+
+              {user ? (
+                <>
+                  <li className="nav-item d-flex align-items-center justify-content-center">
+                    <a className="nav-link d-flex align-items-center justify-content-center" href="/profile">
+                      <IoMdContact className='me-1' />Profile</a>
+                  </li>
+                </>
+              ) : (
+                <>
+
+                </>
+              )}
             </ul>
           </div>
 
           {/* Right Buttons */}
           <div className="d-flex align-items-center">
+            {/* Navbar Toggler for mobile view */}
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
             {user ? (
               <>
-                {/* Icon-only View Profile Button */}
-                <a href="/profile" className="btn me-2 p-2" type="button" title="View Profile">
-                  <FaUserCircle size={24} color='#f4d2ac' />
-                </a>
-                <button onClick={handleLogout} className="btn btn-logout" type="button">
-                  Log Out
+                <button onClick={handleLogout} className="btn btn-logout d-flex align-items-center justify-content-center m-2" type="button">
+                  <TbLogout />
                 </button>
               </>
             ) : (

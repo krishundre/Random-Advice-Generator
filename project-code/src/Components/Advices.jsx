@@ -9,7 +9,16 @@ import { MdSkipNext, MdReport } from 'react-icons/md';
 import { FaShareAlt, FaPlus } from 'react-icons/fa';
 import Switch from 'react-switch';
 import { toPng } from 'html-to-image';
+import bgforShare from '../Assets/SignUp_LogIn_BG.png';
+import bgforSharewithLogo from '../Assets/Logo.png';
 
+const questions = [
+  "How do you typically handle stress?",
+  "What's your approach to decision-making?",
+  "How do you prefer to interact with others?",
+  "What motivates you the most?",
+  "How do you deal with change?"
+];
 
 const Advices = () => {
   const [advice, setAdvice] = useState('');
@@ -104,10 +113,10 @@ const Advices = () => {
 
     toPng(sectionToCapture, { cacheBust: true })
       .then((dataUrl) => {
-        const img = new Image();
-        img.src = dataUrl;
+        const adviceImage = new Image();
+        adviceImage.src = dataUrl;
 
-        img.onload = () => {
+        adviceImage.onload = () => {
           const canvas = document.createElement('canvas');
           const ctx = canvas.getContext('2d');
 
@@ -115,46 +124,47 @@ const Advices = () => {
           canvas.width = 1280;
           canvas.height = 720;
 
-          // Fill background
-          ctx.fillStyle = '#000'; // Black background
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          // Load and draw the background image
+          const backgroundImage = new Image();
+          backgroundImage.src = bgforShare; // Replace with the path to your background image
+          backgroundImage.onload = () => {
+            ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height); // Cover the entire canvas
 
-          // Center the advice text
-          const adviceX = (canvas.width - img.width) / 2;
-          const adviceY = (canvas.height - img.height) / 2;
-          ctx.drawImage(img, adviceX, adviceY);
+            // Draw the advice text image on top
+            const adviceX = (canvas.width - adviceImage.width) / 2;
+            const adviceY = (canvas.height - adviceImage.height) / 2;
+            ctx.drawImage(adviceImage, adviceX, adviceY);
 
-          // Add "Visit RandomlyRight for more!!" text above the logo
-          ctx.font = '24px Arial';
-          ctx.fillStyle = '#FFFFFF';
-          ctx.textAlign = 'center';
-          ctx.fillText('Visit RandomlyRight for more!!', canvas.width / 2, canvas.height - 100);
+            // Load and draw the logo
+            const logoImage = new Image();
+            logoImage.src = bgforSharewithLogo; // Replace with the path to your logo
+            logoImage.onload = () => {
+              const logoHeight = 100; // Adjust logo height
+              const logoWidth = (logoImage.width / logoImage.height) * logoHeight;
 
-          // Load and draw the logo
-          const logo = new Image();
-          logo.src = '../Assets/Logo.png'; // Replace with correct path or use raw GitHub URL
+              const logoX = (canvas.width - logoWidth) / 2; // Center horizontally
+              const logoY = canvas.height - logoHeight - 10; // Position above the bottom
+              ctx.drawImage(logoImage, logoX, logoY, logoWidth, logoHeight);
 
-          logo.onload = () => {
-            const logoHeight = 80;
-            const logoWidth = (logo.width / logo.height) * logoHeight;
+              // Generate and download the final image
+              const finalDataUrl = canvas.toDataURL();
+              const link = document.createElement('a');
+              link.download = 'AdvicesbyRandomlyRight.png';
+              link.href = finalDataUrl;
+              link.click();
+            };
 
-            const logoX = (canvas.width - logoWidth) / 2;
-            const logoY = canvas.height - logoHeight - 10;
-            ctx.drawImage(logo, logoX, logoY);
-
-            const finalDataUrl = canvas.toDataURL();
-            const link = document.createElement('a');
-            link.download = 'advice_with_text_and_logo.png';
-            link.href = finalDataUrl;
-            link.click();
+            logoImage.onerror = () => {
+              console.error('Error loading logo image.');
+            };
           };
 
-          logo.onerror = () => {
-            console.error('Error loading logo image.');
+          backgroundImage.onerror = () => {
+            console.error('Error loading background image.');
           };
         };
 
-        img.onerror = () => {
+        adviceImage.onerror = () => {
           console.error('Error loading generated advice image.');
         };
       })
@@ -213,9 +223,9 @@ const Advices = () => {
           <a className="btn btn-add-advice" href="/add-advice">
             Add Advice <FaPlus />
           </a>
-          <button className="btn btn-danger report-btn">
+          <a className="btn btn-danger report-btn" href='/contact'>
             Report <MdReport className="fs-4 ms-1" />
-          </button>
+          </a>
         </div>
 
         <div className="auto-refresh">
@@ -235,7 +245,7 @@ const Advices = () => {
           </label>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

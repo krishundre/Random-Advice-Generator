@@ -21,7 +21,7 @@ const AdviceOfDay = () => {
             }
         } catch (error) {
             console.error("Error fetching advice:", error);
-            setAdvice("Unable to fetch advice. Please try again later.");
+            setAdvice("Please Login to see advice of the ");
         }
     };
 

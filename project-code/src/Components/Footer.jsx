@@ -51,6 +51,7 @@ const Footer = () => {
 
               <li><a href="/termsofservice">Terms of Service</a></li>
               <li><a href="/privacy-policy">Privacy Policy</a></li>
+              <li><a href="https://docs.google.com/document/d/1HDF6Vc3-4t81tS5lN868tsQEW9g4kcgP/edit?usp=sharing&ouid=112010709532649457590&rtpof=true&sd=true" target='_blank'>Documentation</a></li>
             </ul>
           </div>
         </div>
@@ -62,7 +63,7 @@ const Footer = () => {
           <p>© 2024 Random Advice Generator India. All rights reserved.</p>
         </div>
       </div>
-    </footer>
+    </footer >
   );
 };
 
