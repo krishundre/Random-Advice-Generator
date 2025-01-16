@@ -3,7 +3,7 @@ import './Advices.css';
 import { auth } from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, arrayUnion, arrayRemove, where, query } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { MdSkipNext, MdReport } from 'react-icons/md';
 import { FaShareAlt, FaPlus } from 'react-icons/fa';
@@ -11,6 +11,7 @@ import Switch from 'react-switch';
 import { toPng } from 'html-to-image';
 import bgforShare from '../Assets/SignUp_LogIn_BG.png';
 import bgforSharewithLogo from '../Assets/Logo.png';
+import toast, { Toaster } from 'react-hot-toast';
 
 const questions = [
   "How do you typically handle stress?",
@@ -45,7 +46,8 @@ const Advices = () => {
     try {
       setLoading(true);
       const adviceCollection = collection(db, 'advices');
-      const adviceSnapshot = await getDocs(adviceCollection);
+      const approvedAdviceQuery = query(adviceCollection, where('status', '==', 'approved'));
+      const adviceSnapshot = await getDocs(approvedAdviceQuery);
       const adviceList = adviceSnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
@@ -115,6 +117,7 @@ const Advices = () => {
       .then((dataUrl) => {
         const adviceImage = new Image();
         adviceImage.src = dataUrl;
+        toast.success('Image Downloaded')
 
         adviceImage.onload = () => {
           const canvas = document.createElement('canvas');
@@ -209,7 +212,7 @@ const Advices = () => {
             </button>
           ))}
         </div>
-
+        <Toaster />
         <div className="button-container1">
           <button className="next-btn" onClick={fetchAdvice}>
             <MdSkipNext />

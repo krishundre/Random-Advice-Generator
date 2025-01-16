@@ -28,6 +28,7 @@ const AddAdvice = () => {
           category: category.trim(),
           source: user.displayName || user.email, // Use username if available, fallback to email
           addedDate: serverTimestamp(), // Firestore server timestamp
+          status: 'not-approved'
         });
 
         // Update the user's document in the 'users' collection

@@ -96,7 +96,7 @@ const ProfilePage = () => {
         {/* Profile Photo */}
         <div className="profile-photo">
           <img
-            src={user.avatarUrl || 'https://via.placeholder.com/150'}
+            src={user.avatarUrl || 'https://api.dicebear.com/9.x/big-ears-neutral/svg?seed=Aiden'}
             alt="Profile"
           />
         </div>
@@ -137,6 +137,7 @@ const ProfilePage = () => {
                   <span className="date-tag">
                     Added on: {new Date(advice.addedDate).toLocaleDateString()}
                   </span>
+                  <span className="category-tag fw-bold">Status: {advice.status}</span>
                 </li>
               ))}
             </ul>

@@ -119,7 +119,7 @@ const Navbar = () => {
             {user ? (
               <>
                 <button onClick={handleLogout} className="btn btn-logout d-flex align-items-center justify-content-center m-2" type="button">
-                  <TbLogout />
+                  Log out<TbLogout className='ms-1' />
                 </button>
               </>
             ) : (
