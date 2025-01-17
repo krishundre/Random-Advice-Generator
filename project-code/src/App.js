@@ -21,6 +21,8 @@ import ProfilePage from './Components/ProfilePage';
 import ResetPassword from './Components/Reset-password';
 import AddAdvice from './Components/AddAdvice';
 import SubscribeStrip from './Components/subscribe';
+import AdminPage from './Components/AdminPage';
+
 
 function App() {
   return (
@@ -46,6 +48,7 @@ function App() {
               <Route path='/additional-details' element={<AdditionalDetails />} />
               <Route path='/reset-password' element={<ResetPassword />} />
               <Route path='/add-advice' element={<AddAdvice />} />
+              <Route path='/admin' element={<AdminPage />} />
             </Routes>
             <Footer />
             <SubscribeStrip />

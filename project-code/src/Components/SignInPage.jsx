@@ -9,38 +9,28 @@ function SignIn() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
-
     const navigate = useNavigate();
 
-    // Handle form submission for sign-up
     const handleSignUp = async (e) => {
         e.preventDefault();
         setError('');
 
-        // Check if passwords match
         if (password !== confirmPassword) {
             setError('Passwords do not match');
             return;
         }
 
         try {
-            // Create user account with email and password
-            const date = new Date();
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password, date);
-
-            // Send email verification
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             await sendEmailVerification(userCredential.user);
             alert('Account created! Please verify your email.');
-
-            // Redirect to additional details page
-            navigate('/additional-details'); // Replace with your actual route
+            navigate('/additional-details');
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
                 setError('An account with this email already exists. Please log in.');
             } else {
-                setError(error.message); // Generic error handling
+                setError(error.message);
             }
-            console.error('Error signing up:', error.message);
         }
     };
 
@@ -48,9 +38,7 @@ function SignIn() {
         <div className="sign-in-container d-flex justify-content-center align-items-center">
             <div className="form-container p-4">
                 <h2 className="text-center text-white mb-4"><b>Sign up</b> to get the advices you didn't know you needed</h2>
-
                 {error && <div className="alert alert-danger text-center">{error}</div>}
-
                 <form onSubmit={handleSignUp}>
                     <div className="form-group mb-3">
                         <label htmlFor="email" className="form-label">Email</label>
@@ -63,7 +51,6 @@ function SignIn() {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
-
                     <div className="form-group mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
                         <input
@@ -75,7 +62,6 @@ function SignIn() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-
                     <div className="form-group mb-3">
                         <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
                         <input
@@ -87,14 +73,10 @@ function SignIn() {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                     </div>
-
                     <div className="d-flex justify-content-center">
-                        <button type="submit" className="btn btn-primary custom-btn-primary">
-                            Sign Up
-                        </button>
+                        <button type="submit" className="btn btn-primary custom-btn-primary">Sign Up</button>
                     </div>
                 </form>
-
                 <div className="text-center mt-3">
                     <a href="/login" className="forgot-password">Already have an account? Log in</a>
                 </div>

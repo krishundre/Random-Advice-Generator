@@ -126,6 +126,7 @@ const AdditionalDetails = () => {
                     uid: user.uid, // Store the user's UID for reference
                     avatarUrl: avatarUrl, // Store the generated avatar URL
                     createdAt: serverTimestamp(), // Store the time at which account was created
+                    role: 'user', // Default role is 'user'
                 });
 
                 // Save the username to the 'usernames' collection to avoid duplication
