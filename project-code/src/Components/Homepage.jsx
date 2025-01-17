@@ -11,10 +11,26 @@ import ss3 from "../Assets/ss3.jpeg"
 import { TypeAnimation } from 'react-type-animation';
 import { Tilt } from 'react-tilt'
 import AdviceOfDay from "./AdviceOfDay";
+import { auth } from '../config/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Homepage = () => {
+
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  // Check if a user is logged in
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
 
   const defaultOptions = {
     reverse: false,  // reverse the tilt direction
@@ -100,7 +116,16 @@ const Homepage = () => {
         </div>
       </section>
 
-      <AdviceOfDay />
+      {user ? (
+        <>
+          <AdviceOfDay />
+
+        </>
+      ) : (
+        <>
+
+        </>
+      )}
       {/* Section 4: Social Media Proofs */}
       <section className="social-media-section text-center">
         <h2>Follow Us on Instagram 📸</h2>
