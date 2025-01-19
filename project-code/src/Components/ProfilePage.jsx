@@ -3,6 +3,8 @@ import './ProfilePage.css';
 import { auth, db } from '../config/firebase';
 import { doc, getDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { toast } from 'react-hot-toast';
+import { FaPlus } from 'react-icons/fa';
+
 
 const reactionMap = {
   smile: '😊',
@@ -121,7 +123,12 @@ const ProfilePage = () => {
               ))}
             </ul>
           ) : (
-            <p className="no-advice">No reacted advice available.</p>
+            <>
+              <p className="no-advice">No reacted advice available.</p>
+              <a className="btn btn-danger" href="/advices">
+                Get Advices 👵
+              </a>
+            </>
           )}
         </div>
 
@@ -142,7 +149,12 @@ const ProfilePage = () => {
               ))}
             </ul>
           ) : (
-            <p className="no-advice">No advice added yet.</p>
+            <>
+              <p className="no-advice">No advice added yet.</p>
+              <a className="btn btn-success" href="/add-advice">
+                Add Advice <FaPlus />
+              </a>
+            </>
           )}
         </div>
       </div>
