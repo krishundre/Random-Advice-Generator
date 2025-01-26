@@ -1,7 +1,8 @@
 /* Page Background */
 .add-advice-page {
-  background-color: #2C2A2D;
-  /* Base Dark Color */
+  background: linear-gradient(120deg, #2C2A2D, #3A3A3D, #2C2A2D);
+  background-size: 300% 300%;
+  animation: gradientAnimation 15s ease infinite;
   color: #FFFFFF;
   /* Pure White */
   min-height: 100vh;
@@ -9,10 +10,22 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background: linear-gradient(135deg, #2C2A2D 60%, #3A3A3D);
   font-family: 'Arial', sans-serif;
-  background: url('../Assets/HomePageBackground.png');
+}
 
+/* Gradient animation for smooth background */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Form Container */
@@ -31,10 +44,12 @@
 .form-heading {
   color: #FFD700;
   /* Gold */
-  font-size: 1.8rem;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: bold;
 }
 
+/* Form Subheading */
 .form-subheading {
   color: #B0B0B0;
   /* Light Gray */
@@ -81,6 +96,12 @@
   /* Orange Glow */
 }
 
+/* Textarea */
+.input-advice {
+  height: 120px;
+  resize: none;
+}
+
 /* Dropdown Styling */
 .input-category {
   appearance: none;
@@ -91,13 +112,7 @@
   background-size: 15px;
 }
 
-/* Textarea */
-.input-advice {
-  height: 120px;
-  resize: none;
-}
-
-/* Button Styles */
+/* Submit Button */
 .btn-submit {
   background: linear-gradient(135deg, #E16A20, #2AB67D);
   color: #FFFFFF;
@@ -117,15 +132,66 @@
   transform: translateY(-2px);
 }
 
-/* Success Message */
-.success-message {
-  background-color: #3DDC97;
-  /* Mint Green */
-  color: #FFFFFF;
-  /* Pure White */
-  padding: 15px;
-  border-radius: 8px;
+/* Submission Process Section */
+.submission-process {
   margin-top: 20px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+.submission-process h3 {
+  font-size: 1.5rem;
+  color: #FFD700;
+  /* Gold */
+  margin-bottom: 10px;
+}
+
+.submission-process ol {
+  margin: 0;
+  padding-left: 20px;
+  color: #F2F2F2;
+}
+
+.submission-process ol li {
+  margin-bottom: 8px;
+}
+
+/* User Advices Section */
+.user-advices {
+  margin-top: 30px;
+  text-align: left;
+}
+
+/* Guidelines Section */
+.guidelines {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #3A3A3D;
+  border-left: 5px solid #FFD700;
+  border-radius: 8px;
+  color: #FFFFFF;
+  text-align: left;
+}
+
+.guidelines h3 {
+  font-size: 1.2rem;
+  color: #FFD700;
+  margin-bottom: 10px;
+}
+
+.guidelines ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.guidelines ul li {
   font-size: 1rem;
+  margin-bottom: 8px;
+  color: #F2F2F2;
+}
+
+/* Error Text */
+.error-text {
+  color: #FF4E50;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
 }
