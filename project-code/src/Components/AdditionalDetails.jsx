@@ -80,7 +80,7 @@ const AdditionalDetails = () => {
                 setAvatarUrl(''); // Clear avatar if username is taken
             } else {
                 setUsernameError('');
-                const avatar = `https://api.dicebear.com/9.x/dylan/svg?seed=${encodeURIComponent(value)}`;
+                const avatar = `https://api.dicebear.com/9.x/notionists-neutral/svg?seed=${encodeURIComponent(value)}`;
                 setAvatarUrl(avatar); // Set avatar URL
             }
         } catch (error) {
@@ -161,7 +161,7 @@ const AdditionalDetails = () => {
 
                     {avatarUrl && (
                         <div className="avatar-preview">
-                            <label>Your URL will be generated based on Username</label>
+                            <label>Your Avatar will be generated based on Username</label>
                             <img src={avatarUrl} alt="Avatar Preview" />
                         </div>
                     )}

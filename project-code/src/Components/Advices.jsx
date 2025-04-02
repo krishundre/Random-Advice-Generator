@@ -3,7 +3,7 @@ import './Advices.css';
 import { auth } from '../config/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, doc, updateDoc, arrayUnion, arrayRemove, where, query } from 'firebase/firestore';
+import { collection, getDocs, getDoc, doc, updateDoc, arrayUnion, arrayRemove, where, query } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { MdSkipNext, MdReport } from 'react-icons/md';
 import { FaShareAlt, FaPlus } from 'react-icons/fa';
@@ -63,7 +63,20 @@ const Advices = () => {
       setAdvice(randomAdvice.advice);
       setAdviceId(randomAdvice.id);
       setReactions(randomAdvice.reactions || {});
-      setUserReaction(null);
+
+      // Check if the user has reacted to this advice
+      const userDocRef = doc(db, 'users', auth.currentUser.uid);
+      const userDocSnapshot = await getDoc(userDocRef);
+
+      if (userDocSnapshot.exists()) {
+        const userData = userDocSnapshot.data();
+        const previousReaction = userData.reactedAdvices?.find(
+          (reaction) => reaction.adviceId === randomAdvice.id
+        );
+
+        // Set the user's previous reaction
+        setUserReaction(previousReaction?.reaction || null);
+      }
     } catch (error) {
       console.error('Error fetching advice:', error);
     } finally {
@@ -71,42 +84,67 @@ const Advices = () => {
     }
   };
 
+
   // Update reactions in Firestore and track reacted advice
   const updateReaction = async (newReaction) => {
-    if (!adviceId || !user) return;
+    if (!adviceId || !user) {
+      toast.error('You must be logged in to react.');
+      return;
+    }
 
     try {
-      const adviceDoc = doc(db, 'advices', adviceId);
-      const userDoc = doc(db, 'users', user.uid);
-      const updatedReactions = { ...reactions };
+      const userDocRef = doc(db, 'users', user.uid); // Reference to the current user's document
+      const adviceDocRef = doc(db, 'advices', adviceId); // Reference to the advice document
 
-      // Remove the previous reaction
-      if (userReaction) {
-        updatedReactions[userReaction] = Math.max(0, (updatedReactions[userReaction] || 1) - 1);
+      const userDocSnapshot = await getDoc(userDocRef);
+      const userData = userDocSnapshot.data();
 
-        // Remove the previous advice from the user's reacted list
-        await updateDoc(userDoc, {
-          reactedAdvices: arrayRemove({ adviceId, reaction: userReaction }),
+      // Check if the user has already reacted to this advice
+      const previousReaction = userData.reactedAdvices?.find(
+        (reaction) => reaction.adviceId === adviceId
+      );
+
+      const updatedReactions = { ...reactions }; // Clone the current reactions
+
+      // If the user has reacted before, decrement the previous reaction count
+      if (previousReaction) {
+        updatedReactions[previousReaction.reaction] = Math.max(
+          0,
+          (updatedReactions[previousReaction.reaction] || 1) - 1
+        );
+
+        // Remove the previous reaction from the user's reactedAdvices array
+        await updateDoc(userDocRef, {
+          reactedAdvices: arrayRemove(previousReaction),
         });
       }
 
-      // Add the new reaction
+      // Increment the count for the new reaction
       updatedReactions[newReaction] = (updatedReactions[newReaction] || 0) + 1;
 
-      // Update reactions in Firestore
-      await updateDoc(adviceDoc, { reactions: updatedReactions });
+      // Update the advice document with the new reactions
+      await updateDoc(adviceDocRef, { reactions: updatedReactions });
 
-      // Add the new advice to the user's reacted list
-      await updateDoc(userDoc, {
-        reactedAdvices: arrayUnion({ adviceId, reaction: newReaction }),
+      // Add the new reaction to the user's reactedAdvices array
+      await updateDoc(userDocRef, {
+        reactedAdvices: arrayUnion({
+          adviceId,
+          reaction: newReaction,
+        }),
       });
 
+      // Update the state for immediate UI feedback
       setReactions(updatedReactions);
       setUserReaction(newReaction);
+
+      toast.success('Your reaction has been updated!');
     } catch (error) {
       console.error('Error updating reaction:', error);
+      toast.error('Failed to update reaction. Please try again.');
     }
   };
+
+
 
   // Generate and share an image of the advice
   const handleShare = () => {

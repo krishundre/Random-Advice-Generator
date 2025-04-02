@@ -136,18 +136,23 @@ const ProfilePage = () => {
         <div className="added-advice">
           <h2 className="section-title">Your Added Advice</h2>
           {addedAdvices.length > 0 ? (
-            <ul className="advice-list">
-              {addedAdvices.map((advice, index) => (
-                <li key={index} className="advice-item">
-                  <p>{advice.advice}</p>
-                  <span className="category-tag">Category: {advice.category}</span>
-                  <span className="date-tag">
-                    Added on: {new Date(advice.addedDate).toLocaleDateString()}
-                  </span>
-                  <span className="category-tag fw-bold">Status: {advice.status}</span>
-                </li>
-              ))}
-            </ul>
+            <>
+              <ul className="advice-list">
+                {addedAdvices.map((advice, index) => (
+                  <li key={index} className="advice-item">
+                    <p>{advice.advice}</p>
+                    <span className="category-tag">Category: {advice.category}</span>
+                    <span className="date-tag">
+                      Added on: {new Date(advice.addedDate).toLocaleDateString()}
+                    </span>
+                    <span className="category-tag fw-bold">Status: {advice.status}</span>
+                  </li>
+                ))}
+              </ul>
+              <a className="btn btn-success" href="/add-advice">
+                Add More Advice <FaPlus />
+              </a>
+            </>
           ) : (
             <>
               <p className="no-advice">No advice added yet.</p>

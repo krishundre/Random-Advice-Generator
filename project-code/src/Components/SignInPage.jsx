@@ -21,7 +21,10 @@ function SignIn() {
         }
 
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            // Create user account with email and password
+            const date = new Date();
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password, date);
+            // Send email verification            
             await sendEmailVerification(userCredential.user);
             alert('Account created! Please verify your email.');
             navigate('/additional-details');
@@ -72,6 +75,7 @@ function SignIn() {
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
+                        <p className='text-light'>Min. 8 characters, 1 letter, 1 number and 1 special character</p>
                     </div>
                     <div className="d-flex justify-content-center">
                         <button type="submit" className="btn btn-primary custom-btn-primary">Sign Up</button>

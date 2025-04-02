@@ -38,8 +38,8 @@ const Footer = () => {
           <div className="col-md-3">
             <h5 className="section-title">Connect with Us</h5>
             <ul className="list-unstyled social-icons">
-              <li><a href="https://www.instagram.com/randomlyright24?igsh=amVkNGoxenBraG9q" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i> Instagram</a></li>
-              <li><a href="https://x.com/randomlyright24" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter"></i> X</a></li>
+              <li><a href="https://www.instagram.com/randomlyright24?igsh=amVkNGoxenBraG9q" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="https://x.com/randomlyright24" target="_blank" rel="noopener noreferrer">X</a></li>
               {/*<li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in"></i> LinkedIn</a></li>*/}
             </ul>
           </div>
